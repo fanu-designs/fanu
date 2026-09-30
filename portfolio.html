@@ -1,663 +1,1120 @@
-{% extends "admin/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-Portfolio Management | Fanu Designs
-{% endblock %}
+<head>
 
-{% block content %}
+    <meta charset="UTF-8">
 
-<div class="portfolio-page">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <!-- =========================
-         PORTFOLIO HEADER
-    ========================== -->
-    <div class="portfolio-header">
+    <title>Portfolio | Fanu Designs</title>
 
-        <div class="portfolio-header-content">
+    <meta
+        name="description"
+        content="Explore selected creative, branding, web design, development and digital projects by Fanu Designs."
+    >
 
-            <div>
-                <span class="portfolio-eyebrow">
-                    <i class="fas fa-layer-group"></i>
-                    CREATIVE WORKS
-                </span>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
 
-                <h1>
-                    Portfolio
-                    <span>Studio</span>
-                </h1>
+</head>
 
-                <p>
-                    Manage, showcase and organize the digital
-                    experiences created by Fanu Designs.
-                </p>
+
+<body class="portfolio-page">
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header
+    class="portfolio-navbar"
+    id="portfolioNavbar"
+>
+
+    <div class="portfolio-nav-container">
+
+
+        <a
+            href="{{ url_for('main.index') }}"
+            class="portfolio-logo"
+        >
+            FANU<span>DESIGNS</span>
+        </a>
+
+
+        <nav
+            class="portfolio-nav-links"
+            id="portfolioNavLinks"
+        >
+
+            <a href="{{ url_for('main.index') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('main.services') }}">
+                Services
+            </a>
+
+            <a href="{{ url_for('main.portfolio') }}">Portfolio</a>
+
+            <a href="{{ url_for('main.about') }}">
+                About
+            </a>
+
+            <a href="{{ url_for('main.index') }}#pricing">
+                Pricing
+            </a>
+
+            <a href="{{ url_for('main.index') }}#contact">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <a
+            href="{{ url_for('main.index') }}#contact"
+            class="portfolio-nav-cta"
+        >
+            <span>Start a Project</span>
+            <strong>↗</strong>
+        </a>
+
+
+        <button
+            class="portfolio-menu-toggle"
+            id="portfolioMenuToggle"
+            type="button"
+            aria-label="Open navigation"
+        >
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<main>
+
+<section class="portfolio-page-hero">
+
+    <div class="portfolio-hero-grid"></div>
+
+    <div class="portfolio-hero-glow"></div>
+
+
+    <div class="portfolio-container">
+
+        <div class="portfolio-hero-content">
+
+
+            <div class="portfolio-kicker">
+
+                <span></span>
+
+                SELECTED WORK
+
             </div>
 
-            <a
-                href="{{ url_for('admin.add_project') }}"
-                class="portfolio-add-btn"
+
+            <h1>
+
+                Ideas made
+                <br>
+
+                <em>visible.</em>
+
+            </h1>
+
+
+            <p>
+
+                A collection of creative, digital and
+                technology projects designed and developed
+                by Fanu Designs.
+
+            </p>
+
+
+            <div class="portfolio-hero-meta">
+
+                <div>
+
+                    <strong>
+                        {{ projects|length }}
+                    </strong>
+
+                    <span>
+                        PROJECTS
+                    </span>
+
+                </div>
+
+
+                <div class="hero-meta-line"></div>
+
+
+                <div>
+
+                    <strong>
+                        05
+                    </strong>
+
+                    <span>
+                        CORE SERVICES
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="portfolio-hero-symbol">
+
+            <div class="portfolio-symbol-box">
+
+                <span>F</span>
+
+            </div>
+
+            <small>
+                CREATIVE<br>
+                DIGITAL<br>
+                STUDIO
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="portfolio-hero-bottom">
+
+        <span>
+            PORTFOLIO / 2026
+        </span>
+
+        <div></div>
+
+        <span>
+            SCROLL TO EXPLORE
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PORTFOLIO INTRO
+========================================================= -->
+
+<section class="portfolio-intro">
+
+    <div class="portfolio-container">
+
+        <div class="portfolio-section-label">
+
+            <span>01</span>
+
+            OUR WORK
+
+        </div>
+
+
+        <div class="portfolio-intro-content">
+
+            <h2>
+
+                Work that combines
+                <strong>design & technology.</strong>
+
+            </h2>
+
+
+            <p>
+
+                Every project is an opportunity to solve a
+                problem, communicate an idea and create
+                something people remember.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PORTFOLIO SHOWCASE
+========================================================= -->
+
+<section class="portfolio-showcase">
+
+    <div class="portfolio-container">
+
+
+        <div class="portfolio-heading-row">
+
+            <div>
+
+                <div class="portfolio-section-label">
+
+                    <span>02</span>
+
+                    SELECTED PROJECTS
+
+                </div>
+
+
+                <h2>
+                    Explore the
+                    <strong>work.</strong>
+                </h2>
+
+            </div>
+
+
+            <p>
+
+                Browse our selected projects across
+                design, development, branding and
+                digital experiences.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- FILTERS -->
+
+        <div
+            class="portfolio-filters"
+            id="portfolioFilters"
+        >
+
+            <button
+                class="portfolio-filter active"
+                data-filter="all"
+                type="button"
             >
-                <i class="fas fa-plus"></i>
-                <span>Add New Project</span>
+                All Work
+            </button>
+
+            <button
+                class="portfolio-filter"
+                data-filter="graphic design"
+                type="button"
+            >
+                Graphic Design
+            </button>
+
+            <button
+                class="portfolio-filter"
+                data-filter="web design"
+                type="button"
+            >
+                Web Design
+            </button>
+
+            <button
+                class="portfolio-filter"
+                data-filter="development"
+                type="button"
+            >
+                Development
+            </button>
+
+            <button
+                class="portfolio-filter"
+                data-filter="branding"
+                type="button"
+            >
+                Branding
+            </button>
+
+            <button
+                class="portfolio-filter"
+                data-filter="printing"
+                type="button"
+            >
+                Printing
+            </button>
+
+        </div>
+
+
+
+        <!-- PROJECT GRID -->
+
+        {% if projects %}
+
+        <div
+            class="premium-portfolio-grid"
+            id="portfolioGrid"
+        >
+
+            {% for project in projects %}
+
+            <article
+                class="premium-project-card {% if loop.first %}premium-project-featured{% endif %}"
+                data-category="{{ project.category|lower }}"
+            >
+
+
+                <div class="premium-project-image">
+
+
+                    {% if project.image %}
+
+                    <img
+                        src="{{ url_for('static', filename='uploads/' + project.image) }}"
+                        alt="{{ project.title }}"
+                        loading="lazy"
+                    >
+
+                    {% else %}
+
+                    <div class="premium-project-placeholder">
+
+                        <span>
+                            FANU
+                        </span>
+
+                        <strong>
+                            DESIGNS
+                        </strong>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <div class="premium-project-overlay">
+
+                        <a
+                            href="{{ url_for('main.project_detail', project_id=project.id) }}"
+                            class="portfolio-view-project"
+                        >
+                            View Case Study
+                            <span>↗</span>
+                        </a>
+
+                    </div>
+
+
+                    <div class="premium-project-index">
+                        {{ "%02d"|format(loop.index) }}
+                    </div>
+
+
+                </div>
+
+
+                <div class="premium-project-info">
+
+
+                    <div>
+
+                        <span class="premium-project-category">
+                            {{ project.category }}
+                        </span>
+
+
+                        <h3>
+                            {{ project.title }}
+                        </h3>
+
+                    </div>
+
+
+                    <span class="premium-project-arrow">
+                        ↗
+                    </span>
+
+
+                </div>
+
+
+                {% if project.technologies %}
+
+                <div class="premium-project-tech">
+
+                    {{ project.technologies }}
+
+                </div>
+
+                {% endif %}
+
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- EMPTY FILTER STATE -->
+
+        <div
+            class="portfolio-filter-empty"
+            id="portfolioFilterEmpty"
+        >
+
+            <div>
+                00
+            </div>
+
+            <h3>
+                No projects found
+            </h3>
+
+            <p>
+                There are no projects in this category yet.
+            </p>
+
+        </div>
+
+
+        {% else %}
+
+        <!-- NO PROJECTS -->
+
+        <div class="portfolio-empty-state">
+
+            <div class="empty-state-number">
+                00
+            </div>
+
+            <h3>
+                Portfolio coming soon.
+            </h3>
+
+            <p>
+                We're currently preparing our latest
+                creative and digital work.
+            </p>
+
+            <a
+                href="{{ url_for('main.index') }}#contact"
+                class="portfolio-empty-btn"
+            >
+                Start a Project
+                <span>↗</span>
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SERVICES STRIP
+========================================================= -->
+
+<section class="portfolio-services-strip">
+
+    <div class="portfolio-container">
+
+        <div class="portfolio-strip-heading">
+
+            <span>
+                WHAT WE CREATE
+            </span>
+
+            <strong>
+                05
+            </strong>
+
+        </div>
+
+
+        <div class="portfolio-strip-items">
+
+            <span>
+                Graphic Design
+            </span>
+
+            <span>
+                Web Design
+            </span>
+
+            <span>
+                Development
+            </span>
+
+            <span>
+                Apps
+            </span>
+
+            <span>
+                Branding
+            </span>
+
+            <span>
+                Printing
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="portfolio-final-cta">
+
+    <div class="portfolio-cta-glow"></div>
+
+
+    <div class="portfolio-container">
+
+        <div class="portfolio-cta-content">
+
+
+            <div class="portfolio-kicker">
+
+                <span></span>
+
+                YOUR PROJECT COULD BE NEXT
+
+            </div>
+
+
+            <h2>
+
+                Let's create
+                <br>
+
+                <em>something remarkable.</em>
+
+            </h2>
+
+
+            <p>
+
+                Have an idea, business or project that
+                needs a creative partner?
+
+            </p>
+
+
+            <a
+                href="{{ url_for('main.index') }}#contact"
+                class="portfolio-cta-button"
+            >
+
+                Start Your Project
+
+                <span>↗</span>
+
             </a>
 
         </div>
 
     </div>
 
+</section>
 
-    <!-- =========================
-         PORTFOLIO STATS
-    ========================== -->
-    <div class="portfolio-stats">
-
-        <div class="portfolio-stat-card">
-
-            <div class="portfolio-stat-icon">
-                <i class="fas fa-briefcase"></i>
-            </div>
-
-            <div>
-                <span>Total Projects</span>
-                <strong>{{ projects|length }}</strong>
-            </div>
-
-        </div>
+</main>
 
 
-        <div class="portfolio-stat-card">
 
-            <div class="portfolio-stat-icon">
-                <i class="fas fa-star"></i>
-            </div>
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
-            <div>
-                <span>Featured</span>
+<footer class="portfolio-footer">
 
-                <strong>
-                    {{
-                        projects
-                        |selectattr("featured")
-                        |list
-                        |length
-                    }}
-                </strong>
-            </div>
-
-        </div>
+    <div class="portfolio-container">
 
 
-        <div class="portfolio-stat-card">
-
-            <div class="portfolio-stat-icon">
-                <i class="fas fa-globe"></i>
-            </div>
-
-            <div>
-                <span>Live Projects</span>
-
-                <strong>
-                    {{
-                        projects
-                        |selectattr("live_url")
-                        |list
-                        |length
-                    }}
-                </strong>
-            </div>
-
-        </div>
+        <div class="portfolio-footer-top">
 
 
-        <div class="portfolio-stat-card">
+            <!-- BRAND -->
 
-            <div class="portfolio-stat-icon">
-                <i class="fas fa-code"></i>
-            </div>
+            <div class="portfolio-footer-brand">
 
-            <div>
-                <span>Digital Works</span>
-                <strong>{{ projects|length }}</strong>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         TOOLBAR
-    ========================== -->
-    <div class="portfolio-toolbar">
-
-        <div class="portfolio-search">
-
-            <i class="fas fa-search"></i>
-
-            <input
-                type="search"
-                id="portfolioSearch"
-                placeholder="Search projects..."
-            >
-
-        </div>
-
-
-        <div class="portfolio-filters">
-
-            <button
-                type="button"
-                class="portfolio-filter active"
-                data-filter="all"
-            >
-                All
-            </button>
-
-            <button
-                type="button"
-                class="portfolio-filter"
-                data-filter="branding"
-            >
-                Branding
-            </button>
-
-            <button
-                type="button"
-                class="portfolio-filter"
-                data-filter="web"
-            >
-                Websites
-            </button>
-
-            <button
-                type="button"
-                class="portfolio-filter"
-                data-filter="app"
-            >
-                Applications
-            </button>
-
-            <button
-                type="button"
-                class="portfolio-filter"
-                data-filter="graphic"
-            >
-                Graphic Design
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         PROJECT GRID
-    ========================== -->
-    {% if projects %}
-
-    <div
-        class="portfolio-grid"
-        id="portfolioGrid"
-    >
-
-        {% for project in projects %}
-
-        {% set category = project.category|lower %}
-
-        <article
-            class="portfolio-card"
-            data-category="{{ category }}"
-            data-title="{{ project.title|lower }}"
-        >
-
-            <!-- PROJECT IMAGE -->
-            <div class="portfolio-image">
-
-                {% if project.image %}
-
-                <img
-                    src="{{ url_for(
-                        'static',
-                        filename='uploads/' ~ project.image
-                    ) }}"
-                    alt="{{ project.title }}"
-                    loading="lazy"
+                <a
+                    href="{{ url_for('main.index') }}"
+                    class="portfolio-footer-logo"
                 >
-
-                {% else %}
-
-                <div class="portfolio-image-placeholder">
-
-                    <i class="fas fa-image"></i>
-
-                    <span>
-                        No Preview
-                    </span>
-
-                </div>
-
-                {% endif %}
+                    FANU<span>DESIGNS</span>
+                </a>
 
 
-                <!-- IMAGE OVERLAY -->
-                <div class="portfolio-overlay">
+                <p class="portfolio-footer-tagline">
 
-                    <div class="portfolio-overlay-content">
+                    We Design.
+                    We Build.
+                    We Brand.
 
-                        <span>
-                            {{ project.category }}
-                        </span>
-
-                        <h3>
-                            {{ project.title }}
-                        </h3>
-
-                        <a
-                            href="{{ url_for(
-                                'main.project_detail',
-                                project_id=project.id
-                            ) }}"
-                            class="portfolio-view-btn"
-                            target="_blank"
-                        >
-                            View Project
-                            <i class="fas fa-arrow-up-right-from-square"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <!-- PROJECT NUMBER -->
-                <div class="portfolio-number">
-                    {{ "%02d"|format(loop.index) }}
-                </div>
-
-
-                <!-- FEATURED -->
-                {% if project.featured %}
-
-                <div class="portfolio-featured">
-                    <i class="fas fa-star"></i>
-                    Featured
-                </div>
-
-                {% endif %}
-
-            </div>
-
-
-            <!-- PROJECT CONTENT -->
-            <div class="portfolio-card-content">
-
-                <div class="portfolio-category">
-
-                    <span>
-                        {{ project.category }}
-                    </span>
-
-                    {% if project.featured %}
-
-                    <i
-                        class="fas fa-certificate"
-                        title="Featured project"
-                    ></i>
-
-                    {% endif %}
-
-                </div>
-
-
-                <h2>
-                    {{ project.title }}
-                </h2>
-
-
-                <p>
-                    {{ project.description[:145] }}
-
-                    {% if project.description|length > 145 %}
-                        ...
-                    {% endif %}
                 </p>
 
 
-                <!-- TECHNOLOGIES -->
-                {% if project.technologies %}
+                <p class="portfolio-footer-description">
 
-                <div class="portfolio-tech">
+                    A creative digital studio helping
+                    businesses transform ideas into
+                    memorable brands and digital
+                    experiences.
 
-                    {% for tech in project.technologies.split(',')[:4] %}
-
-                    <span>
-                        {{ tech.strip() }}
-                    </span>
-
-                    {% endfor %}
-
-                </div>
-
-                {% endif %}
-
-
-                <!-- CARD FOOTER -->
-                <div class="portfolio-card-footer">
-
-                    <div class="portfolio-price">
-
-                        {% if project.price %}
-
-                        <small>
-                            Project Value
-                        </small>
-
-                        <strong>
-                            {{ project.price }}
-                        </strong>
-
-                        {% else %}
-
-                        <small>
-                            Project Type
-                        </small>
-
-                        <strong>
-                            {{ project.category }}
-                        </strong>
-
-                        {% endif %}
-
-                    </div>
-
-
-                    <div class="portfolio-actions">
-
-                        <a
-                            href="{{ url_for(
-                                'admin.edit_project',
-                                project_id=project.id
-                            ) }}"
-                            class="portfolio-action edit"
-                            title="Edit project"
-                        >
-                            <i class="fas fa-pen"></i>
-                        </a>
-
-
-                        <form
-                            action="{{ url_for(
-                                'admin.toggle_feature',
-                                project_id=project.id
-                            ) }}"
-                            method="POST"
-                        >
-
-                            <input
-                                type="hidden"
-                                name="csrf_token"
-                                value="{{ csrf_token() }}"
-                            >
-
-                            <button
-                                type="submit"
-                                class="portfolio-action star"
-                                title="{% if project.featured %}Remove from featured{% else %}Feature project{% endif %}"
-                            >
-
-                                <i
-                                    class="fas fa-star"
-                                    {% if not project.featured %}
-                                    style="opacity:.35"
-                                    {% endif %}
-                                ></i>
-
-                            </button>
-
-                        </form>
-
-
-                        <form
-                            action="{{ url_for(
-                                'admin.delete_project',
-                                project_id=project.id
-                            ) }}"
-                            method="POST"
-                            onsubmit="return confirm(
-                                'Delete this project permanently?'
-                            );"
-                        >
-
-                            <input
-                                type="hidden"
-                                name="csrf_token"
-                                value="{{ csrf_token() }}"
-                            >
-
-                            <button
-                                type="submit"
-                                class="portfolio-action delete"
-                                title="Delete project"
-                            >
-                                <i class="fas fa-trash"></i>
-                            </button>
-
-                        </form>
-
-                    </div>
-
-                </div>
+                </p>
 
             </div>
 
-        </article>
 
-        {% endfor %}
+            <!-- EXPLORE -->
 
-    </div>
+            <div class="portfolio-footer-column">
+
+                <h4>
+                    EXPLORE
+                </h4>
 
 
-    <!-- =========================
-         EMPTY SEARCH
-    ========================== -->
-    <div
-        class="portfolio-no-results"
-        id="portfolioNoResults"
-    >
+                <a href="{{ url_for('main.index') }}">
+                    Home
+                </a>
 
-        <div>
-            <i class="fas fa-search"></i>
+                <a href="{{ url_for('main.services') }}">
+                    Services
+                </a>
+
+                <a href="{{ url_for('main.portfolio') }}">
+                    Portfolio
+                </a>
+
+                <a href="{{ url_for('main.about') }}">
+                    About
+                </a>
+
+                <a href="{{ url_for('main.index') }}#pricing">
+                    Pricing
+                </a>
+
+                <a href="{{ url_for('main.index') }}#contact">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <!-- SERVICES -->
+
+            <div class="portfolio-footer-column">
+
+                <h4>
+                    SERVICES
+                </h4>
+
+
+                <a href="{{ url_for('main.services') }}">
+                    Graphic Design
+                </a>
+
+                <a href="{{ url_for('main.services') }}">
+                    Web Design & Development
+                </a>
+
+                <a href="{{ url_for('main.services') }}">
+                    Management Systems
+                </a>
+
+                <a href="{{ url_for('main.services') }}">
+                    Apps
+                </a>
+
+                <a href="{{ url_for('main.services') }}">
+                    Branding & Printing
+                </a>
+
+            </div>
+
+
+            <!-- CONTACT -->
+
+            <div class="portfolio-footer-column">
+
+                <h4>
+                    LET'S TALK
+                </h4>
+
+
+                <a href="mailto:hello@fanudesigns.com">
+                    fanuelkaasewe@gmail.com
+                </a>
+
+
+                <a href="tel:+254740704681">
+                    +254 740 704 681
+                </a>
+
+
+                <span>
+                    Kenya
+                </span>
+
+
+                <a
+                    href="{{ url_for('main.index') }}#contact"
+                    class="portfolio-footer-project"
+                >
+                    Start a Project
+                    <span>↗</span>
+                </a>
+
+            </div>
+
         </div>
 
-        <h3>
-            No projects found
-        </h3>
 
-        <p>
-            Try another project name or category.
-        </p>
-
-    </div>
+        <div class="portfolio-footer-bottom">
 
 
-    {% else %}
+            <span>
+                © 2026 Fanu Designs.
+                All Rights Reserved.
+            </span>
 
-    <!-- =========================
-         EMPTY PORTFOLIO
-    ========================== -->
-    <div class="portfolio-empty">
 
-        <div class="portfolio-empty-icon">
-            <i class="fas fa-folder-open"></i>
+            <span>
+                Designed & Built by Fanu Designs
+            </span>
+
+
+            <div class="portfolio-socials">
+
+                <a href="#" aria-label="Facebook">
+                    f
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                    ◎
+                </a>
+
+                <a href="#" aria-label="LinkedIn">
+                    in
+                </a>
+
+                <a href="#" aria-label="WhatsApp">
+                    ☎
+                </a>
+
+            </div>
+
+
         </div>
 
-        <span>
-            YOUR CREATIVE SPACE
-        </span>
-
-        <h2>
-            No projects yet
-        </h2>
-
-        <p>
-            Start building your portfolio by adding
-            your first creative project.
-        </p>
-
-        <a
-            href="{{ url_for('admin.add_project') }}"
-            class="portfolio-add-btn"
-        >
-            <i class="fas fa-plus"></i>
-            Add Your First Project
-        </a>
-
     </div>
 
-    {% endif %}
+</footer>
 
-</div>
 
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    const searchInput =
-        document.getElementById("portfolioSearch");
-
-    const cards =
-        document.querySelectorAll(".portfolio-card");
-
-    const filters =
-        document.querySelectorAll(".portfolio-filter");
-
-    const noResults =
-        document.getElementById("portfolioNoResults");
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
 
-    let activeFilter = "all";
+        /* ================================================
+           NAVBAR
+        ================================================= */
+
+        const navbar =
+            document.getElementById(
+                "portfolioNavbar"
+            );
+
+        const menuToggle =
+            document.getElementById(
+                "portfolioMenuToggle"
+            );
+
+        const navLinks =
+            document.getElementById(
+                "portfolioNavLinks"
+            );
 
 
-    function filterProjects() {
+        function updateNavbar() {
 
-        const search =
-            searchInput
-                ? searchInput.value
-                    .toLowerCase()
-                    .trim()
-                : "";
+            if (window.scrollY > 40) {
 
-        let visible = 0;
-
-
-        cards.forEach(card => {
-
-            const title =
-                card.dataset.title || "";
-
-            const category =
-                card.dataset.category || "";
-
-
-            const matchesSearch =
-                title.includes(search);
-
-
-            let matchesFilter = true;
-
-
-            if (activeFilter !== "all") {
-
-                if (activeFilter === "web") {
-
-                    matchesFilter =
-                        category.includes("web");
-
-                } else if (activeFilter === "app") {
-
-                    matchesFilter =
-                        category.includes("app") ||
-                        category.includes("application");
-
-                } else if (activeFilter === "branding") {
-
-                    matchesFilter =
-                        category.includes("branding");
-
-                } else if (activeFilter === "graphic") {
-
-                    matchesFilter =
-                        category.includes("graphic");
-
-                }
-
-            }
-
-
-            if (
-                matchesSearch &&
-                matchesFilter
-            ) {
-
-                card.style.display = "";
-
-                visible++;
+                navbar.classList.add(
+                    "scrolled"
+                );
 
             } else {
 
-                card.style.display = "none";
+                navbar.classList.remove(
+                    "scrolled"
+                );
 
             }
 
-        });
+        }
 
 
-        if (noResults) {
+        window.addEventListener(
+            "scroll",
+            updateNavbar
+        );
 
-            noResults.classList.toggle(
-                "show",
-                visible === 0
+        updateNavbar();
+
+
+        if (menuToggle) {
+
+            menuToggle.addEventListener(
+                "click",
+                function () {
+
+                    navLinks.classList.toggle(
+                        "open"
+                    );
+
+                    menuToggle.classList.toggle(
+                        "open"
+                    );
+
+                }
             );
 
         }
 
-    }
+
+        navLinks
+            .querySelectorAll("a")
+            .forEach(
+                function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            navLinks.classList.remove(
+                                "open"
+                            );
+
+                            menuToggle.classList.remove(
+                                "open"
+                            );
+
+                        }
+                    );
+
+                }
+            );
 
 
-    if (searchInput) {
+        /* ================================================
+           PORTFOLIO FILTER
+        ================================================= */
 
-        searchInput.addEventListener(
-            "input",
-            filterProjects
-        );
+        const filters =
+            document.querySelectorAll(
+                ".portfolio-filter"
+            );
 
-    }
+        const cards =
+            document.querySelectorAll(
+                ".premium-project-card"
+            );
+
+        const empty =
+            document.getElementById(
+                "portfolioFilterEmpty"
+            );
 
 
-    filters.forEach(filter => {
+        filters.forEach(
+            function (filter) {
 
-        filter.addEventListener(
-            "click",
-            function () {
+                filter.addEventListener(
+                    "click",
+                    function () {
 
-                filters.forEach(item => {
-                    item.classList.remove("active");
-                });
 
-                this.classList.add("active");
+                        filters.forEach(
+                            function (item) {
 
-                activeFilter =
-                    this.dataset.filter;
+                                item.classList.remove(
+                                    "active"
+                                );
 
-                filterProjects();
+                            }
+                        );
+
+
+                        filter.classList.add(
+                            "active"
+                        );
+
+
+                        const selected =
+                            filter.dataset.filter;
+
+                        let visibleCount = 0;
+
+
+                        cards.forEach(
+                            function (card) {
+
+                                const category =
+                                    card.dataset.category
+                                    || "";
+
+
+                                const matches =
+                                    selected === "all"
+                                    ||
+                                    category.includes(
+                                        selected
+                                    );
+
+
+                                if (matches) {
+
+                                    card.classList.remove(
+                                        "portfolio-hidden"
+                                    );
+
+                                    visibleCount++;
+
+                                } else {
+
+                                    card.classList.add(
+                                        "portfolio-hidden"
+                                    );
+
+                                }
+
+                            }
+                        );
+
+
+                        if (empty) {
+
+                            if (visibleCount === 0) {
+
+                                empty.classList.add(
+                                    "show"
+                                );
+
+                            } else {
+
+                                empty.classList.remove(
+                                    "show"
+                                );
+
+                            }
+
+                        }
+
+                    }
+                );
 
             }
         );
 
-    });
 
-});
+        /* ================================================
+           REVEAL ANIMATION
+        ================================================= */
+
+        const revealElements =
+            document.querySelectorAll(
+                ".premium-project-card"
+            );
+
+
+        const observer =
+            new IntersectionObserver(
+                function (entries) {
+
+                    entries.forEach(
+                        function (entry) {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "portfolio-visible"
+                                );
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: .08
+                }
+            );
+
+
+        revealElements.forEach(
+            function (element) {
+
+                observer.observe(element);
+
+            }
+        );
+
+
+    }
+);
 
 </script>
 
-{% endblock %}
+
+</body>
+
+</html>

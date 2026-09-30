@@ -11,246 +11,56 @@
     >
 
     <meta
-        name="robots"
-        content="noindex, nofollow"
+        name="description"
+        content="Fanu Designs — Graphic Design, Branding, Web Design and Web Development."
     >
 
     <title>
-        {% block title %}
-        Fanu Designs Admin
-        {% endblock %}
+        {% block title %}Fanu Designs{% endblock %}
     </title>
 
     <link
         rel="stylesheet"
-        href="{{ url_for(
-            'static',
-            filename='css/style.css'
-        ) }}"
+        href="{{ url_for('static', filename='css/style.css') }}"
     >
 
 </head>
 
-<body class="admin-body">
+<body>
 
-    <div class="admin-layout">
+    {% block content %}
+    {% endblock %}
 
-        <!-- =========================
-             SIDEBAR
-        ========================== -->
+    <nav class="nav-links" id="navLinks">
 
-        <aside class="admin-sidebar">
+    <a href="{{ url_for('main.index') }}">
+        Home
+    </a>
 
-            <div class="admin-brand">
+    <a href="{{ url_for('main.about') }}">
+        About
+    </a>
 
-                <a
-                    href="{{ url_for('admin.dashboard') }}"
-                    class="admin-logo"
-                >
-                    FANU
-                    <span>DESIGNS</span>
-                </a>
+    <a href="{{ url_for('main.index') }}#services">
+        Services
+    </a>
 
-                <div class="admin-label">
-                    ADMIN PANEL
-                </div>
+    <a href="{{ url_for('main.index') }}#portfolio">
+        Portfolio
+    </a>
 
-            </div>
+    <a href="{{ url_for('main.index') }}#pricing">
+        Pricing
+    </a>
 
+    <a href="{{ url_for('main.index') }}#contact">
+        Contact
+    </a>
 
-            <!-- =========================
-                 NAVIGATION
-            ========================== -->
-
-            <nav class="admin-nav">
-
-                <div class="admin-nav-section">
-                    MAIN
-                </div>
-
-                <a
-                    href="{{ url_for('admin.dashboard') }}"
-                    class="admin-nav-link"
-                >
-                    <span class="admin-nav-icon">
-                        ◈
-                    </span>
-
-                    <span>
-                        Dashboard
-                    </span>
-                </a>
-
-
-                <a
-                    href="{{ url_for('admin.portfolio') }}"
-                    class="admin-nav-link"
-                >
-                    <span class="admin-nav-icon">
-                        ◫
-                    </span>
-
-                    <span>
-                        Portfolio
-                    </span>
-                </a>
-
-
-                <a
-                    href="{{ url_for('admin.enquiries') }}"
-                    class="admin-nav-link"
-                >
-                    <span class="admin-nav-icon">
-                        ✉
-                    </span>
-
-                    <span>
-                        Enquiries
-                    </span>
-
-                    {% if new_enquiries is defined
-                          and new_enquiries > 0 %}
-
-                        <span class="nav-badge">
-                            {{ new_enquiries }}
-                        </span>
-
-                    {% endif %}
-
-                </a>
-
-
-                <div class="admin-nav-section">
-                    WEBSITE
-                </div>
-
-
-                <a
-                    href="{{ url_for('main.index') }}"
-                    target="_blank"
-                    class="admin-nav-link"
-                >
-                    <span class="admin-nav-icon">
-                        ↗
-                    </span>
-
-                    <span>
-                        View Website
-                    </span>
-                </a>
-
-
-                <a
-                    href="{{ url_for('admin.logout') }}"
-                    class="admin-nav-link admin-logout-link"
-                >
-                    <span class="admin-nav-icon">
-                        ⇥
-                    </span>
-
-                    <span>
-                        Logout
-                    </span>
-                </a>
-
-            </nav>
-
-
-            <!-- =========================
-                 SIDEBAR FOOTER
-            ========================== -->
-
-            <div class="admin-sidebar-footer">
-
-                <div class="admin-user-dot">
-                    A
-                </div>
-
-                <div>
-
-                    <strong>
-                        Administrator
-                    </strong>
-
-                    <small>
-                        Fanu Designs
-                    </small>
-
-                </div>
-
-            </div>
-
-        </aside>
-
-
-        <!-- =========================
-             MOBILE TOPBAR
-        ========================== -->
-
-        <header class="admin-mobile-header">
-
-            <a
-                href="{{ url_for('admin.dashboard') }}"
-                class="admin-logo"
-            >
-                FANU
-                <span>DESIGNS</span>
-            </a>
-
-            <a
-                href="{{ url_for('admin.logout') }}"
-                class="admin-mobile-logout"
-            >
-                Logout
-            </a>
-
-        </header>
-
-
-        <!-- =========================
-             MAIN CONTENT
-        ========================== -->
-
-        <main class="admin-main">
-
-            {% with messages = get_flashed_messages(
-                with_categories=true
-            ) %}
-
-                {% if messages %}
-
-                    <div class="admin-flashes">
-
-                        {% for category, message in messages %}
-
-                            <div
-                                class="admin-alert {{ category }}"
-                            >
-                                {{ message }}
-                            </div>
-
-                        {% endfor %}
-
-                    </div>
-
-                {% endif %}
-
-            {% endwith %}
-
-
-            {% block content %}
-            {% endblock %}
-
-        </main>
-
-    </div>
-
+</nav>
 
     <script
-        src="{{ url_for(
-            'static',
-            filename='js/main.js'
-        ) }}"
+        src="{{ url_for('static', filename='js/main.js') }}"
     ></script>
 
 </body>

@@ -1,220 +1,1210 @@
-{% extends "admin/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-Fanu Designs — Services
-{% endblock %}
+<head>
 
-{% block content %}
+    <meta charset="UTF-8">
 
-<div class="services-page">
-
-```
-<!-- HEADER -->
-
-<div class="services-header">
-
-    <div>
-
-        <span class="page-eyebrow">
-            SERVICE MANAGEMENT
-        </span>
-
-        <h1>
-            Services
-        </h1>
-
-        <p>
-            Manage the creative and digital services offered by Fanu Designs.
-        </p>
-
-    </div>
-
-    <a
-        href="{{ url_for('admin.add_service') }}"
-        class="add-service-btn"
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
     >
-        <span>+</span>
-        Add Service
-    </a>
 
-</div>
+    <title>Services | Fanu Designs</title>
 
+    <meta
+        name="description"
+        content="Explore professional graphic design, web development, management systems, app development, branding and printing services by Fanu Designs."
+    >
 
-<!-- STATISTICS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
 
-<div class="service-stats">
-
-    <div class="service-stat-card">
-
-        <div class="service-stat-icon">
-            ◈
-        </div>
-
-        <div>
-
-            <span>Total Services</span>
-
-            <strong>
-                {{ total_services }}
-            </strong>
-
-            <small>
-                Available services
-            </small>
-
-        </div>
-
-    </div>
+</head>
 
 
-    <div class="service-stat-card">
-
-        <div class="service-stat-icon featured">
-            ★
-        </div>
-
-        <div>
-
-            <span>Featured</span>
-
-            <strong>
-                {{ featured_services }}
-            </strong>
-
-            <small>
-                Highlighted services
-            </small>
-
-        </div>
-
-    </div>
-
-</div>
+<body class="services-page">
 
 
-<!-- SEARCH -->
+<!-- =========================================================
+     TOP NAVBAR
+========================================================= -->
 
-<div class="services-toolbar">
+<header class="services-navbar" id="servicesNavbar">
 
-    <div class="service-search">
+    <div class="services-nav-container">
 
-        <span>
-            ⌕
-        </span>
+        <!-- LOGO -->
 
-        <input
-            type="text"
-            id="serviceSearch"
-            placeholder="Search services..."
-            onkeyup="searchServices()"
+        <a
+            href="{{ url_for('main.index') }}"
+            class="services-logo"
+        >
+            FANU<span>DESIGNS</span>
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav
+            class="services-nav-links"
+            id="servicesNavLinks"
         >
 
+            <a
+                href="{{ url_for('main.index') }}"
+            >
+                Home
+            </a>
+
+            <a
+                href="{{ url_for('main.services') }}"
+                class="active"
+            >
+                Services
+            </a>
+
+            <a href="{{ url_for('main.portfolio') }}">Portfolio</a>
+
+            <a
+                href="{{ url_for('main.about') }}"
+            >
+                About
+            </a>
+
+            <a
+                href="{{ url_for('main.index') }}#pricing"
+            >
+                Pricing
+            </a>
+
+            <a
+                href="{{ url_for('main.index') }}#contact"
+            >
+                Contact
+            </a>
+
+        </nav>
+
+
+        <!-- CTA -->
+
+        <a
+            href="{{ url_for('main.index') }}#contact"
+            class="services-nav-cta"
+        >
+            <span>Start a Project</span>
+            <strong>↗</strong>
+        </a>
+
+
+        <!-- MOBILE BUTTON -->
+
+        <button
+            class="services-menu-toggle"
+            id="servicesMenuToggle"
+            aria-label="Open navigation"
+            type="button"
+        >
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
     </div>
 
-</div>
+</header>
 
 
-<!-- SERVICES -->
 
-{% if services %}
+<!-- =========================================================
+     HERO
+========================================================= -->
 
-<div
-    class="services-management-grid"
-    id="servicesGrid"
->
+<main>
 
-    {% for service in services %}
 
-    <div
-        class="service-management-card"
-        data-search="{{ service.name }} {{ service.category }} {{ service.description }}"
-    >
+<section class="services-hero">
 
-        <div class="service-card-top">
+    <div class="services-hero-grid"></div>
 
-            <div class="service-icon-box">
+    <div class="services-orb orb-one"></div>
 
-                {% if service.icon %}
-                    {{ service.icon }}
-                {% else %}
-                    ✦
-                {% endif %}
+    <div class="services-orb orb-two"></div>
+
+
+    <div class="services-hero-inner">
+
+
+        <div class="services-hero-copy">
+
+            <div class="services-kicker">
+
+                <span></span>
+
+                OUR SERVICES
 
             </div>
 
-            {% if service.featured %}
 
-            <span class="featured-service-badge">
-                ★ Featured
-            </span>
+            <h1>
 
-            {% endif %}
+                We create
+                <br>
+
+                <em>bold ideas.</em>
+
+                <br>
+
+                <span>Powerful solutions.</span>
+
+            </h1>
+
+
+            <p>
+
+                Fanu Designs brings together creative design,
+                modern technology and professional production
+                to help businesses build brands people remember.
+
+            </p>
+
+
+            <div class="services-hero-buttons">
+
+                <a
+                    href="{{ url_for('main.index') }}#contact"
+                    class="services-btn-primary"
+                >
+                    Start a Project
+                    <span>↗</span>
+                </a>
+
+
+                <a
+                    href="#our-services"
+                    class="services-btn-outline"
+                >
+                    Explore Services
+                    <span>↓</span>
+                </a>
+
+            </div>
 
         </div>
 
 
-        <div class="service-card-body">
+        <!-- HERO SIDE -->
 
-            <span class="service-category">
-                {{ service.category }}
-            </span>
+        <div class="services-hero-mark">
+
+            <div class="hero-mark-circle">
+
+                <span>F</span>
+
+            </div>
+
+            <div class="hero-mark-line"></div>
+
+            <small>
+                CREATIVE<br>
+                DIGITAL<br>
+                SOLUTIONS
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="services-hero-bottom">
+
+        <span>SCROLL TO EXPLORE</span>
+
+        <div></div>
+
+        <span>05 SERVICES</span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     INTRO
+========================================================= -->
+
+<section class="services-introduction">
+
+    <div class="services-container">
+
+        <div class="services-section-tag">
+
+            <span>01</span>
+
+            WHAT WE DO
+
+        </div>
+
+
+        <div class="services-intro-main">
 
             <h2>
-                {{ service.name }}
+
+                Creativity meets
+                <strong>technology.</strong>
+
             </h2>
 
+
             <p>
-                {{ service.description }}
+
+                Whether you are launching a new business,
+                building your digital presence, developing
+                a custom system or strengthening your brand,
+                we create solutions designed around your goals.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SERVICES
+========================================================= -->
+
+<section
+    class="services-showcase"
+    id="our-services"
+>
+
+    <div class="services-container">
+
+
+        <div class="services-showcase-heading">
+
+            <div>
+
+                <div class="services-section-tag">
+
+                    <span>02</span>
+
+                    OUR EXPERTISE
+
+                </div>
+
+                <h2>
+
+                    Services built
+                    <br>
+
+                    <strong>for impact.</strong>
+
+                </h2>
+
+            </div>
+
+
+            <p>
+
+                From the first idea to the final product,
+                we combine design, technology and production
+                to deliver professional results.
+
             </p>
 
         </div>
 
 
-        <div class="service-card-footer">
 
-            <div class="service-price">
+        <!-- =================================================
+             SERVICE 01
+        ================================================== -->
 
-                <small>
-                    STARTING FROM
-                </small>
+        <article class="professional-service">
 
-                <strong>
-                    {{ service.price or "Request Quote" }}
-                </strong>
+            <div class="service-number-big">
+                01
+            </div>
+
+
+            <div class="professional-service-icon">
+                ✦
+            </div>
+
+
+            <div class="professional-service-content">
+
+                <div class="professional-service-label">
+                    CREATIVE DESIGN
+                </div>
+
+
+                <h3>
+                    Graphic
+                    <br>
+                    Design
+                </h3>
+
+
+                <p>
+
+                    Visual communication that gives your
+                    ideas a strong identity. We create designs
+                    that are attractive, strategic and built
+                    to communicate clearly.
+
+                </p>
+
+
+                <div class="service-features">
+
+                    <span>Logo Design</span>
+
+                    <span>Posters</span>
+
+                    <span>Flyers</span>
+
+                    <span>Social Media</span>
+
+                    <span>Business Cards</span>
+
+                    <span>Brochures</span>
+
+                    <span>Invitations</span>
+
+                    <span>Marketing Materials</span>
+
+                </div>
 
             </div>
 
 
-            <div class="service-card-actions">
+            <a
+                href="{{ url_for('main.index') }}#contact"
+                class="professional-service-arrow"
+            >
+                <span>Discuss this service</span>
+                ↗
+            </a>
+
+        </article>
+
+
+
+        <!-- =================================================
+             SERVICE 02
+        ================================================== -->
+
+        <article class="professional-service service-highlight">
+
+            <div class="service-number-big">
+                02
+            </div>
+
+
+            <div class="professional-service-icon">
+                ◈
+            </div>
+
+
+            <div class="professional-service-content">
+
+                <div class="professional-service-label">
+                    DIGITAL EXPERIENCE
+                </div>
+
+
+                <h3>
+                    Web Design
+                    <br>
+                    <span>& Development</span>
+                </h3>
+
+
+                <p>
+
+                    Modern websites and web applications
+                    designed to look exceptional, work smoothly
+                    and provide a professional digital experience
+                    across phones, tablets and computers.
+
+                </p>
+
+
+                <div class="service-features">
+
+                    <span>Business Websites</span>
+
+                    <span>Portfolio Websites</span>
+
+                    <span>Landing Pages</span>
+
+                    <span>E-Commerce</span>
+
+                    <span>Web Applications</span>
+
+                    <span>Responsive Design</span>
+
+                    <span>UI/UX</span>
+
+                    <span>Custom Development</span>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('main.index') }}#contact"
+                class="professional-service-arrow"
+            >
+                <span>Build my website</span>
+                ↗
+            </a>
+
+        </article>
+
+
+
+        <!-- =================================================
+             SERVICE 03
+        ================================================== -->
+
+        <article class="professional-service">
+
+            <div class="service-number-big">
+                03
+            </div>
+
+
+            <div class="professional-service-icon">
+                ⬡
+            </div>
+
+
+            <div class="professional-service-content">
+
+                <div class="professional-service-label">
+                    BUSINESS TECHNOLOGY
+                </div>
+
+
+                <h3>
+                    Management
+                    <br>
+                    <span>Systems Development</span>
+                </h3>
+
+
+                <p>
+
+                    Custom digital systems that help businesses,
+                    schools, hospitals and organizations manage
+                    information, automate processes and improve
+                    operational efficiency.
+
+                </p>
+
+
+                <div class="service-features">
+
+                    <span>School Systems</span>
+
+                    <span>Hospital Systems</span>
+
+                    <span>Business Systems</span>
+
+                    <span>Inventory Systems</span>
+
+                    <span>Admin Dashboards</span>
+
+                    <span>Database Systems</span>
+
+                    <span>Reports</span>
+
+                    <span>User Management</span>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('main.index') }}#contact"
+                class="professional-service-arrow"
+            >
+                <span>Build my system</span>
+                ↗
+            </a>
+
+        </article>
+
+
+
+        <!-- =================================================
+             SERVICE 04
+        ================================================== -->
+
+        <article class="professional-service service-highlight">
+
+            <div class="service-number-big">
+                04
+            </div>
+
+
+            <div class="professional-service-icon">
+                ◉
+            </div>
+
+
+            <div class="professional-service-content">
+
+                <div class="professional-service-label">
+                    APPLICATIONS
+                </div>
+
+
+                <h3>
+                    Apps
+                </h3>
+
+
+                <p>
+
+                    Practical and engaging applications built
+                    around real-world problems, customer needs
+                    and business objectives.
+
+                </p>
+
+
+                <div class="service-features">
+
+                    <span>Business Apps</span>
+
+                    <span>Web Apps</span>
+
+                    <span>Mobile Concepts</span>
+
+                    <span>Customer Platforms</span>
+
+                    <span>Interactive Apps</span>
+
+                    <span>Dashboards</span>
+
+                    <span>UI/UX</span>
+
+                    <span>Custom Solutions</span>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('main.index') }}#contact"
+                class="professional-service-arrow"
+            >
+                <span>Discuss an app</span>
+                ↗
+            </a>
+
+        </article>
+
+
+
+        <!-- =================================================
+             SERVICE 05
+        ================================================== -->
+
+        <article class="professional-service">
+
+            <div class="service-number-big">
+                05
+            </div>
+
+
+            <div class="professional-service-icon">
+                ◆
+            </div>
+
+
+            <div class="professional-service-content">
+
+                <div class="professional-service-label">
+                    BRAND IDENTITY & PRODUCTION
+                </div>
+
+
+                <h3>
+                    Branding
+                    <br>
+                    <span>& Printing</span>
+                </h3>
+
+
+                <p>
+
+                    We build memorable brand identities and
+                    transform them into professional physical
+                    materials that your customers can see,
+                    touch and remember.
+
+                </p>
+
+
+                <div class="service-features">
+
+                    <span>Brand Identity</span>
+
+                    <span>Logo Systems</span>
+
+                    <span>Business Cards</span>
+
+                    <span>Banners</span>
+
+                    <span>Signage</span>
+
+                    <span>T-Shirt Printing</span>
+
+                    <span>Mug Printing</span>
+
+                    <span>Promotional Materials</span>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('main.index') }}#contact"
+                class="professional-service-arrow"
+            >
+                <span>Build my brand</span>
+                ↗
+            </a>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     WHY CHOOSE US
+========================================================= -->
+
+<section class="services-why-us">
+
+    <div class="services-container">
+
+
+        <div class="services-why-heading">
+
+            <div class="services-section-tag">
+
+                <span>03</span>
+
+                WHY FANU DESIGNS
+
+            </div>
+
+
+            <h2>
+
+                More than
+                <br>
+
+                <strong>just a service.</strong>
+
+            </h2>
+
+        </div>
+
+
+        <div class="services-benefits">
+
+
+            <div class="benefit">
+
+                <span>01</span>
+
+                <div>
+
+                    <h3>
+                        Creative Thinking
+                    </h3>
+
+                    <p>
+                        We approach every project with fresh
+                        ideas and a focus on creating something
+                        distinctive.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="benefit">
+
+                <span>02</span>
+
+                <div>
+
+                    <h3>
+                        Professional Execution
+                    </h3>
+
+                    <p>
+                        From concept to completion, we pay
+                        attention to the details that make
+                        a project feel professional.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="benefit">
+
+                <span>03</span>
+
+                <div>
+
+                    <h3>
+                        Technology + Design
+                    </h3>
+
+                    <p>
+                        We bridge creativity and technology
+                        to produce digital experiences that
+                        are both beautiful and useful.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="benefit">
+
+                <span>04</span>
+
+                <div>
+
+                    <h3>
+                        One Creative Partner
+                    </h3>
+
+                    <p>
+                        Design, development, branding and
+                        printing can all be handled under
+                        one creative studio.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PROCESS
+========================================================= -->
+
+<section class="services-process">
+
+    <div class="services-container">
+
+
+        <div class="services-process-heading">
+
+            <div class="services-section-tag">
+
+                <span>04</span>
+
+                OUR PROCESS
+
+            </div>
+
+
+            <h2>
+
+                Simple process.
+                <br>
+
+                <strong>Powerful results.</strong>
+
+            </h2>
+
+        </div>
+
+
+        <div class="process-timeline">
+
+
+            <div class="process-step">
+
+                <span>01</span>
+
+                <div class="process-line"></div>
+
+                <h3>
+                    Discover
+                </h3>
+
+                <p>
+                    We understand your idea,
+                    business and goals.
+                </p>
+
+            </div>
+
+
+            <div class="process-step">
+
+                <span>02</span>
+
+                <div class="process-line"></div>
+
+                <h3>
+                    Plan
+                </h3>
+
+                <p>
+                    We define the right creative
+                    and technical direction.
+                </p>
+
+            </div>
+
+
+            <div class="process-step">
+
+                <span>03</span>
+
+                <div class="process-line"></div>
+
+                <h3>
+                    Create
+                </h3>
+
+                <p>
+                    We turn the concept into
+                    a real solution.
+                </p>
+
+            </div>
+
+
+            <div class="process-step">
+
+                <span>04</span>
+
+                <div class="process-line"></div>
+
+                <h3>
+                    Refine
+                </h3>
+
+                <p>
+                    We review, improve and
+                    polish the final details.
+                </p>
+
+            </div>
+
+
+            <div class="process-step">
+
+                <span>05</span>
+
+                <div class="process-line"></div>
+
+                <h3>
+                    Deliver
+                </h3>
+
+                <p>
+                    Your finished project is
+                    ready to make an impact.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FINAL CTA
+========================================================= -->
+
+<section class="services-final">
+
+    <div class="services-final-glow"></div>
+
+    <div class="services-container">
+
+        <div class="services-final-content">
+
+            <div class="services-kicker">
+
+                <span></span>
+
+                HAVE A PROJECT IN MIND?
+
+            </div>
+
+
+            <h2>
+
+                Let's turn your
+                <br>
+
+                <em>idea</em> into reality.
+
+            </h2>
+
+
+            <p>
+
+                Tell us what you have in mind.
+                We'll help you shape it, design it
+                and build it.
+
+            </p>
+
+
+            <a
+                href="{{ url_for('main.index') }}#contact"
+                class="services-btn-primary"
+            >
+                Start Your Project
+
+                <span>↗</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="services-footer">
+
+    <div class="services-container">
+
+
+        <div class="services-footer-top">
+
+
+            <!-- BRAND -->
+
+            <div class="services-footer-brand">
 
                 <a
-                    href="{{ url_for('admin.edit_service', service_id=service.id) }}"
-                    class="service-edit-btn"
+                    href="{{ url_for('main.index') }}"
+                    class="services-footer-logo"
                 >
-                    Edit
+                    FANU<span>DESIGNS</span>
                 </a>
 
 
-                <form
-                    method="POST"
-                    action="{{ url_for('admin.delete_service', service_id=service.id) }}"
-                    onsubmit="return confirm('Delete this service?');"
+                <p>
+
+                    We design.
+                    We build.
+                    We brand.
+
+                </p>
+
+
+                <p class="footer-description">
+
+                    A creative digital studio helping
+                    businesses turn ideas into memorable
+                    brands, websites and digital solutions.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="services-footer-column">
+
+                <h4>
+                    EXPLORE
+                </h4>
+
+
+                <a href="{{ url_for('main.index') }}">
+                    Home
+                </a>
+
+                <a href="{{ url_for('main.services') }}">
+                    Services
+                </a>
+
+                <a href="{{ url_for('main.index') }}#portfolio">
+                    Portfolio
+                </a>
+
+                <a href="{{ url_for('main.about') }}">
+                    About
+                </a>
+
+                <a href="{{ url_for('main.index') }}#pricing">
+                    Pricing
+                </a>
+
+                <a href="{{ url_for('main.index') }}#contact">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <!-- SERVICES -->
+
+            <div class="services-footer-column">
+
+                <h4>
+                    SERVICES
+                </h4>
+
+
+                <a href="#our-services">
+                    Graphic Design
+                </a>
+
+                <a href="#our-services">
+                    Web Design & Development
+                </a>
+
+                <a href="#our-services">
+                    Management Systems
+                </a>
+
+                <a href="#our-services">
+                    Apps
+                </a>
+
+                <a href="#our-services">
+                    Branding & Printing
+                </a>
+
+            </div>
+
+
+            <!-- CONTACT -->
+
+            <div class="services-footer-column footer-contact">
+
+                <h4>
+                    LET'S TALK
+                </h4>
+
+
+                <a href="mailto:hello@fanudesigns.com">
+                    hello@fanudesigns.com
+                </a>
+
+
+                <a href="tel:+254700000000">
+                    +254 700 000 000
+                </a>
+
+
+                <span>
+                    Kenya
+                </span>
+
+
+                <a
+                    href="{{ url_for('main.index') }}#contact"
+                    class="footer-project-link"
                 >
+                    Start a Project
+                    <span>↗</span>
+                </a>
 
-                    <input
-                        type="hidden"
-                        name="csrf_token"
-                        value="{{ csrf_token() }}"
-                    >
+            </div>
 
-                    <button
-                        type="submit"
-                        class="service-delete-btn"
-                    >
-                        Delete
-                    </button>
 
-                </form>
+        </div>
+
+
+        <!-- FOOTER BOTTOM -->
+
+        <div class="services-footer-bottom">
+
+            <span>
+                © {{ current_year if current_year else 2026 }}
+                Fanu Designs. All Rights Reserved.
+            </span>
+
+
+            <span>
+                Designed & Built by Fanu Designs
+            </span>
+
+
+            <div class="footer-socials">
+
+                <a href="#" aria-label="Facebook">
+                    f
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                    ◎
+                </a>
+
+                <a href="#" aria-label="LinkedIn">
+                    in
+                </a>
+
+                <a href="#" aria-label="WhatsApp">
+                    ☎
+                </a>
 
             </div>
 
@@ -222,114 +1212,167 @@ Fanu Designs — Services
 
     </div>
 
-    {% endfor %}
-
-</div>
+</footer>
 
 
-<div
-    id="noServiceResults"
-    class="no-service-results"
-    style="display:none;"
->
 
-    <div>⌕</div>
-
-    <h3>
-        No services found
-    </h3>
-
-    <p>
-        Try a different search term.
-    </p>
-
-</div>
-
-
-{% else %}
-
-<div class="empty-services">
-
-    <div class="empty-service-icon">
-        ✦
-    </div>
-
-    <h2>
-        No services yet
-    </h2>
-
-    <p>
-        Start building your service catalogue by adding your first service.
-    </p>
-
-    <a
-        href="{{ url_for('admin.add_service') }}"
-        class="add-service-btn"
-    >
-        <span>+</span>
-        Add Your First Service
-    </a>
-
-</div>
-
-{% endif %}
-```
-
-</div>
+<!-- =========================================================
+     MOBILE NAV + SCROLL SCRIPT
+========================================================= -->
 
 <script>
 
-function searchServices() {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-    const input =
-        document.getElementById("serviceSearch");
+        const navbar =
+            document.getElementById(
+                "servicesNavbar"
+            );
 
-    const search =
-        input.value.toLowerCase().trim();
+        const menuToggle =
+            document.getElementById(
+                "servicesMenuToggle"
+            );
 
-    const cards =
-        document.querySelectorAll(
-            ".service-management-card"
-        );
+        const navLinks =
+            document.getElementById(
+                "servicesNavLinks"
+            );
 
-    let visible = 0;
 
-    cards.forEach(function(card) {
+        /* NAVBAR SCROLL */
 
-        const text =
-            card.dataset.search.toLowerCase();
+        function handleNavbarScroll() {
 
-        if (text.includes(search)) {
+            if (window.scrollY > 40) {
 
-            card.style.display = "";
+                navbar.classList.add(
+                    "scrolled"
+                );
 
-            visible++;
+            } else {
 
-        } else {
+                navbar.classList.remove(
+                    "scrolled"
+                );
 
-            card.style.display = "none";
+            }
 
         }
 
-    });
 
-
-    const empty =
-        document.getElementById(
-            "noServiceResults"
+        window.addEventListener(
+            "scroll",
+            handleNavbarScroll
         );
 
-    if (empty) {
 
-        empty.style.display =
-            visible === 0
-            ? "block"
-            : "none";
+        handleNavbarScroll();
+
+
+        /* MOBILE MENU */
+
+        if (menuToggle) {
+
+            menuToggle.addEventListener(
+                "click",
+                function () {
+
+                    navLinks.classList.toggle(
+                        "open"
+                    );
+
+                    menuToggle.classList.toggle(
+                        "open"
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* CLOSE MOBILE MENU */
+
+        navLinks
+            .querySelectorAll("a")
+            .forEach(
+                function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            navLinks.classList.remove(
+                                "open"
+                            );
+
+                            menuToggle.classList.remove(
+                                "open"
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+        /* SERVICE REVEAL */
+
+        const revealItems =
+            document.querySelectorAll(
+                ".professional-service, .benefit, .process-step"
+            );
+
+
+        const observer =
+            new IntersectionObserver(
+                function (entries) {
+
+                    entries.forEach(
+                        function (entry) {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "revealed"
+                                );
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        revealItems.forEach(
+            function (item) {
+
+                observer.observe(item);
+
+            }
+        );
 
     }
-
-}
+);
 
 </script>
 
-{% endblock %}
+
+</body>
+
+</html>
