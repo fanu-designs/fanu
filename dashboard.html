@@ -1,0 +1,663 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+Dashboard | Fanu Designs
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-page">
+
+    <!-- =====================================================
+         DASHBOARD HERO
+    ====================================================== -->
+
+    <section class="dashboard-hero">
+
+        <div class="dashboard-hero-content">
+
+            <div>
+
+                <span class="dashboard-eyebrow">
+                    <i class="fas fa-bolt"></i>
+                    CREATIVE COMMAND CENTER
+                </span>
+
+                <h1>
+                    Welcome back,
+                    <span>Fanu Designs.</span>
+                </h1>
+
+                <p>
+                    Manage your projects, enquiries, visitors
+                    and creative business from one powerful
+                    workspace.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-hero-actions">
+
+                <a
+                    href="{{ url_for('admin.add_project') }}"
+                    class="dashboard-primary-btn"
+                >
+                    <i class="fas fa-plus"></i>
+                    New Project
+                </a>
+
+                <a
+                    href="{{ url_for('main.index') }}"
+                    target="_blank"
+                    class="dashboard-secondary-btn"
+                >
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                    View Website
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-hero-decoration dashboard-orb-one"></div>
+        <div class="dashboard-hero-decoration dashboard-orb-two"></div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STATISTICS
+    ====================================================== -->
+
+    <section class="dashboard-stat-grid">
+
+        <!-- Projects -->
+
+        <div class="dashboard-stat-card">
+
+            <div class="dashboard-stat-top">
+
+                <div class="dashboard-stat-icon projects">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+
+                <span class="dashboard-stat-label">
+                    Portfolio
+                </span>
+
+            </div>
+
+            <div class="dashboard-stat-value">
+                {{ total_projects }}
+            </div>
+
+            <div class="dashboard-stat-bottom">
+
+                <span>
+                    Total projects
+                </span>
+
+                <span class="dashboard-stat-highlight">
+                    <i class="fas fa-star"></i>
+                    {{ featured_projects }} featured
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Visitors -->
+
+        <div class="dashboard-stat-card">
+
+            <div class="dashboard-stat-top">
+
+                <div class="dashboard-stat-icon visitors">
+                    <i class="fas fa-users"></i>
+                </div>
+
+                <span class="dashboard-stat-label">
+                    Audience
+                </span>
+
+            </div>
+
+            <div class="dashboard-stat-value">
+                {{ total_visitors }}
+            </div>
+
+            <div class="dashboard-stat-bottom">
+
+                <span>
+                    Total page views
+                </span>
+
+                <span class="dashboard-stat-highlight">
+                    <i class="fas fa-chart-line"></i>
+                    Analytics
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Enquiries -->
+
+        <div class="dashboard-stat-card">
+
+            <div class="dashboard-stat-top">
+
+                <div class="dashboard-stat-icon enquiries">
+                    <i class="fas fa-envelope"></i>
+                </div>
+
+                <span class="dashboard-stat-label">
+                    Leads
+                </span>
+
+            </div>
+
+            <div class="dashboard-stat-value">
+                {{ total_enquiries }}
+            </div>
+
+            <div class="dashboard-stat-bottom">
+
+                <span>
+                    Project enquiries
+                </span>
+
+                {% if new_enquiries > 0 %}
+
+                <span class="dashboard-stat-danger">
+                    <i class="fas fa-circle"></i>
+                    {{ new_enquiries }} new
+                </span>
+
+                {% else %}
+
+                <span class="dashboard-stat-muted">
+                    No new enquiries
+                </span>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <!-- Featured -->
+
+        <div class="dashboard-stat-card">
+
+            <div class="dashboard-stat-top">
+
+                <div class="dashboard-stat-icon featured">
+                    <i class="fas fa-crown"></i>
+                </div>
+
+                <span class="dashboard-stat-label">
+                    Highlights
+                </span>
+
+            </div>
+
+            <div class="dashboard-stat-value">
+                {{ featured_projects }}
+            </div>
+
+            <div class="dashboard-stat-bottom">
+
+                <span>
+                    Featured projects
+                </span>
+
+                <span class="dashboard-stat-highlight">
+                    <i class="fas fa-eye"></i>
+                    Public
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN DASHBOARD GRID
+    ====================================================== -->
+
+    <section class="dashboard-main-grid">
+
+
+        <!-- =================================================
+             RECENT PROJECTS
+        ================================================== -->
+
+        <div class="dashboard-panel">
+
+            <div class="dashboard-panel-header">
+
+                <div>
+
+                    <span class="dashboard-panel-eyebrow">
+                        PORTFOLIO
+                    </span>
+
+                    <h2>
+                        Recent Projects
+                    </h2>
+
+                </div>
+
+                <a
+                    href="{{ url_for('admin.portfolio') }}"
+                    class="dashboard-view-all"
+                >
+                    View all
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            {% if recent_projects %}
+
+            <div class="dashboard-project-list">
+
+                {% for project in recent_projects %}
+
+                <div class="dashboard-project-item">
+
+                    <div class="dashboard-project-image">
+
+                        {% if project.image %}
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='uploads/' ~ project.image
+                            ) }}"
+                            alt="{{ project.title }}"
+                        >
+
+                        {% else %}
+
+                        <div class="dashboard-project-placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="dashboard-project-info">
+
+                        <div class="dashboard-project-meta">
+
+                            <span>
+                                {{ project.category }}
+                            </span>
+
+                            {% if project.featured %}
+
+                            <i
+                                class="fas fa-star"
+                                title="Featured"
+                            ></i>
+
+                            {% endif %}
+
+                        </div>
+
+                        <h3>
+                            {{ project.title }}
+                        </h3>
+
+                        <p>
+                            {{ project.description[:90] }}
+                            {% if project.description|length > 90 %}
+                            ...
+                            {% endif %}
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="{{ url_for(
+                            'admin.edit_project',
+                            project_id=project.id
+                        ) }}"
+                        class="dashboard-item-action"
+                        title="Edit project"
+                    >
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <div class="dashboard-empty-small">
+
+                <i class="fas fa-folder-open"></i>
+
+                <h3>
+                    No projects yet
+                </h3>
+
+                <p>
+                    Add your first creative project.
+                </p>
+
+                <a
+                    href="{{ url_for('admin.add_project') }}"
+                    class="dashboard-small-btn"
+                >
+                    Add Project
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =================================================
+             RECENT ENQUIRIES
+        ================================================== -->
+
+        <div class="dashboard-panel">
+
+            <div class="dashboard-panel-header">
+
+                <div>
+
+                    <span class="dashboard-panel-eyebrow">
+                        CLIENT LEADS
+                    </span>
+
+                    <h2>
+                        Recent Enquiries
+                    </h2>
+
+                </div>
+
+                <a
+                    href="{{ url_for('admin.enquiries') }}"
+                    class="dashboard-view-all"
+                >
+                    View all
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            {% if recent_enquiries %}
+
+            <div class="dashboard-enquiry-list">
+
+                {% for enquiry in recent_enquiries %}
+
+                <div class="dashboard-enquiry-item">
+
+                    <div class="dashboard-client-avatar">
+
+                        {{ enquiry.name[0]|upper }}
+
+                    </div>
+
+
+                    <div class="dashboard-enquiry-info">
+
+                        <div class="dashboard-enquiry-name-row">
+
+                            <h3>
+                                {{ enquiry.name }}
+                            </h3>
+
+                            {% if enquiry.status == "New" %}
+
+                            <span class="dashboard-new-badge">
+                                NEW
+                            </span>
+
+                            {% endif %}
+
+                        </div>
+
+                        <span>
+                            {{ enquiry.service }}
+                        </span>
+
+                        <small>
+                            {{ enquiry.email }}
+                        </small>
+
+                    </div>
+
+
+                    <a
+                        href="{{ url_for(
+                            'admin.enquiry_detail',
+                            enquiry_id=enquiry.id
+                        ) }}"
+                        class="dashboard-item-action"
+                        title="View enquiry"
+                    >
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <div class="dashboard-empty-small">
+
+                <i class="fas fa-inbox"></i>
+
+                <h3>
+                    No enquiries yet
+                </h3>
+
+                <p>
+                    New client enquiries will appear here.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         BOTTOM GRID
+    ====================================================== -->
+
+    <section class="dashboard-bottom-grid">
+
+
+        <!-- QUICK ACTIONS -->
+
+        <div class="dashboard-panel quick-actions-panel">
+
+            <div class="dashboard-panel-header">
+
+                <div>
+
+                    <span class="dashboard-panel-eyebrow">
+                        WORKSPACE
+                    </span>
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions-grid">
+
+                <a
+                    href="{{ url_for('admin.add_project') }}"
+                    class="quick-action"
+                >
+
+                    <div class="quick-action-icon">
+                        <i class="fas fa-plus"></i>
+                    </div>
+
+                    <div>
+                        <strong>
+                            Add Project
+                        </strong>
+
+                        <span>
+                            Create portfolio work
+                        </span>
+                    </div>
+
+                    <i class="fas fa-arrow-right"></i>
+
+                </a>
+
+
+                <a
+                    href="{{ url_for('admin.portfolio') }}"
+                    class="quick-action"
+                >
+
+                    <div class="quick-action-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+
+                    <div>
+                        <strong>
+                            Portfolio
+                        </strong>
+
+                        <span>
+                            Manage creative work
+                        </span>
+                    </div>
+
+                    <i class="fas fa-arrow-right"></i>
+
+                </a>
+
+
+                <a
+                    href="{{ url_for('admin.enquiries') }}"
+                    class="quick-action"
+                >
+
+                    <div class="quick-action-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+
+                    <div>
+                        <strong>
+                            Enquiries
+                        </strong>
+
+                        <span>
+                            Manage client leads
+                        </span>
+                    </div>
+
+                    <i class="fas fa-arrow-right"></i>
+
+                </a>
+
+
+                <a
+                    href="{{ url_for('admin.analytics') }}"
+                    class="quick-action"
+                >
+
+                    <div class="quick-action-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+
+                    <div>
+                        <strong>
+                            Analytics
+                        </strong>
+
+                        <span>
+                            Track website activity
+                        </span>
+                    </div>
+
+                    <i class="fas fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- BRAND CARD -->
+
+        <div class="dashboard-brand-card">
+
+            <div class="dashboard-brand-glow"></div>
+
+            <div class="dashboard-brand-content">
+
+                <span>
+                    FANU DESIGNS
+                </span>
+
+                <h2>
+                    We Design.<br>
+                    We Build.<br>
+                    <strong>We Brand.</strong>
+                </h2>
+
+                <p>
+                    Turning ideas into powerful digital
+                    experiences and memorable brands.
+                </p>
+
+                <a
+                    href="{{ url_for('main.index') }}"
+                    target="_blank"
+                >
+                    Explore Website
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

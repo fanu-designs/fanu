@@ -1,0 +1,73 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+Fanu Designs — Settings
+{% endblock %}
+
+{% block content %}
+
+<div class="admin-page">
+
+    <div class="admin-page-header">
+
+        <div>
+            <p class="admin-page-label">
+                ADMINISTRATION
+            </p>
+
+            <h1>
+                Settings
+            </h1>
+
+            <p>
+                Manage your website administration settings.
+            </p>
+        </div>
+
+        <a
+            href="{{ url_for('admin.dashboard') }}"
+            class="admin-view-site"
+        >
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="admin-panel">
+
+        <div class="panel-header">
+
+            <div>
+                <span>SYSTEM</span>
+
+                <h3>
+                    Website Settings
+                </h3>
+            </div>
+
+        </div>
+
+
+        <div class="analytics-placeholder">
+
+            <div class="analytics-placeholder-icon">
+                ⚙
+            </div>
+
+            <h3>
+                Settings
+            </h3>
+
+            <p>
+                Website and administrator settings will be
+                available here.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

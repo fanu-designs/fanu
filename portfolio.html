@@ -1,0 +1,663 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+Portfolio Management | Fanu Designs
+{% endblock %}
+
+{% block content %}
+
+<div class="portfolio-page">
+
+    <!-- =========================
+         PORTFOLIO HEADER
+    ========================== -->
+    <div class="portfolio-header">
+
+        <div class="portfolio-header-content">
+
+            <div>
+                <span class="portfolio-eyebrow">
+                    <i class="fas fa-layer-group"></i>
+                    CREATIVE WORKS
+                </span>
+
+                <h1>
+                    Portfolio
+                    <span>Studio</span>
+                </h1>
+
+                <p>
+                    Manage, showcase and organize the digital
+                    experiences created by Fanu Designs.
+                </p>
+            </div>
+
+            <a
+                href="{{ url_for('admin.add_project') }}"
+                class="portfolio-add-btn"
+            >
+                <i class="fas fa-plus"></i>
+                <span>Add New Project</span>
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PORTFOLIO STATS
+    ========================== -->
+    <div class="portfolio-stats">
+
+        <div class="portfolio-stat-card">
+
+            <div class="portfolio-stat-icon">
+                <i class="fas fa-briefcase"></i>
+            </div>
+
+            <div>
+                <span>Total Projects</span>
+                <strong>{{ projects|length }}</strong>
+            </div>
+
+        </div>
+
+
+        <div class="portfolio-stat-card">
+
+            <div class="portfolio-stat-icon">
+                <i class="fas fa-star"></i>
+            </div>
+
+            <div>
+                <span>Featured</span>
+
+                <strong>
+                    {{
+                        projects
+                        |selectattr("featured")
+                        |list
+                        |length
+                    }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="portfolio-stat-card">
+
+            <div class="portfolio-stat-icon">
+                <i class="fas fa-globe"></i>
+            </div>
+
+            <div>
+                <span>Live Projects</span>
+
+                <strong>
+                    {{
+                        projects
+                        |selectattr("live_url")
+                        |list
+                        |length
+                    }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="portfolio-stat-card">
+
+            <div class="portfolio-stat-icon">
+                <i class="fas fa-code"></i>
+            </div>
+
+            <div>
+                <span>Digital Works</span>
+                <strong>{{ projects|length }}</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TOOLBAR
+    ========================== -->
+    <div class="portfolio-toolbar">
+
+        <div class="portfolio-search">
+
+            <i class="fas fa-search"></i>
+
+            <input
+                type="search"
+                id="portfolioSearch"
+                placeholder="Search projects..."
+            >
+
+        </div>
+
+
+        <div class="portfolio-filters">
+
+            <button
+                type="button"
+                class="portfolio-filter active"
+                data-filter="all"
+            >
+                All
+            </button>
+
+            <button
+                type="button"
+                class="portfolio-filter"
+                data-filter="branding"
+            >
+                Branding
+            </button>
+
+            <button
+                type="button"
+                class="portfolio-filter"
+                data-filter="web"
+            >
+                Websites
+            </button>
+
+            <button
+                type="button"
+                class="portfolio-filter"
+                data-filter="app"
+            >
+                Applications
+            </button>
+
+            <button
+                type="button"
+                class="portfolio-filter"
+                data-filter="graphic"
+            >
+                Graphic Design
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PROJECT GRID
+    ========================== -->
+    {% if projects %}
+
+    <div
+        class="portfolio-grid"
+        id="portfolioGrid"
+    >
+
+        {% for project in projects %}
+
+        {% set category = project.category|lower %}
+
+        <article
+            class="portfolio-card"
+            data-category="{{ category }}"
+            data-title="{{ project.title|lower }}"
+        >
+
+            <!-- PROJECT IMAGE -->
+            <div class="portfolio-image">
+
+                {% if project.image %}
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='uploads/' ~ project.image
+                    ) }}"
+                    alt="{{ project.title }}"
+                    loading="lazy"
+                >
+
+                {% else %}
+
+                <div class="portfolio-image-placeholder">
+
+                    <i class="fas fa-image"></i>
+
+                    <span>
+                        No Preview
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- IMAGE OVERLAY -->
+                <div class="portfolio-overlay">
+
+                    <div class="portfolio-overlay-content">
+
+                        <span>
+                            {{ project.category }}
+                        </span>
+
+                        <h3>
+                            {{ project.title }}
+                        </h3>
+
+                        <a
+                            href="{{ url_for(
+                                'main.project_detail',
+                                project_id=project.id
+                            ) }}"
+                            class="portfolio-view-btn"
+                            target="_blank"
+                        >
+                            View Project
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROJECT NUMBER -->
+                <div class="portfolio-number">
+                    {{ "%02d"|format(loop.index) }}
+                </div>
+
+
+                <!-- FEATURED -->
+                {% if project.featured %}
+
+                <div class="portfolio-featured">
+                    <i class="fas fa-star"></i>
+                    Featured
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- PROJECT CONTENT -->
+            <div class="portfolio-card-content">
+
+                <div class="portfolio-category">
+
+                    <span>
+                        {{ project.category }}
+                    </span>
+
+                    {% if project.featured %}
+
+                    <i
+                        class="fas fa-certificate"
+                        title="Featured project"
+                    ></i>
+
+                    {% endif %}
+
+                </div>
+
+
+                <h2>
+                    {{ project.title }}
+                </h2>
+
+
+                <p>
+                    {{ project.description[:145] }}
+
+                    {% if project.description|length > 145 %}
+                        ...
+                    {% endif %}
+                </p>
+
+
+                <!-- TECHNOLOGIES -->
+                {% if project.technologies %}
+
+                <div class="portfolio-tech">
+
+                    {% for tech in project.technologies.split(',')[:4] %}
+
+                    <span>
+                        {{ tech.strip() }}
+                    </span>
+
+                    {% endfor %}
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- CARD FOOTER -->
+                <div class="portfolio-card-footer">
+
+                    <div class="portfolio-price">
+
+                        {% if project.price %}
+
+                        <small>
+                            Project Value
+                        </small>
+
+                        <strong>
+                            {{ project.price }}
+                        </strong>
+
+                        {% else %}
+
+                        <small>
+                            Project Type
+                        </small>
+
+                        <strong>
+                            {{ project.category }}
+                        </strong>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="portfolio-actions">
+
+                        <a
+                            href="{{ url_for(
+                                'admin.edit_project',
+                                project_id=project.id
+                            ) }}"
+                            class="portfolio-action edit"
+                            title="Edit project"
+                        >
+                            <i class="fas fa-pen"></i>
+                        </a>
+
+
+                        <form
+                            action="{{ url_for(
+                                'admin.toggle_feature',
+                                project_id=project.id
+                            ) }}"
+                            method="POST"
+                        >
+
+                            <input
+                                type="hidden"
+                                name="csrf_token"
+                                value="{{ csrf_token() }}"
+                            >
+
+                            <button
+                                type="submit"
+                                class="portfolio-action star"
+                                title="{% if project.featured %}Remove from featured{% else %}Feature project{% endif %}"
+                            >
+
+                                <i
+                                    class="fas fa-star"
+                                    {% if not project.featured %}
+                                    style="opacity:.35"
+                                    {% endif %}
+                                ></i>
+
+                            </button>
+
+                        </form>
+
+
+                        <form
+                            action="{{ url_for(
+                                'admin.delete_project',
+                                project_id=project.id
+                            ) }}"
+                            method="POST"
+                            onsubmit="return confirm(
+                                'Delete this project permanently?'
+                            );"
+                        >
+
+                            <input
+                                type="hidden"
+                                name="csrf_token"
+                                value="{{ csrf_token() }}"
+                            >
+
+                            <button
+                                type="submit"
+                                class="portfolio-action delete"
+                                title="Delete project"
+                            >
+                                <i class="fas fa-trash"></i>
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- =========================
+         EMPTY SEARCH
+    ========================== -->
+    <div
+        class="portfolio-no-results"
+        id="portfolioNoResults"
+    >
+
+        <div>
+            <i class="fas fa-search"></i>
+        </div>
+
+        <h3>
+            No projects found
+        </h3>
+
+        <p>
+            Try another project name or category.
+        </p>
+
+    </div>
+
+
+    {% else %}
+
+    <!-- =========================
+         EMPTY PORTFOLIO
+    ========================== -->
+    <div class="portfolio-empty">
+
+        <div class="portfolio-empty-icon">
+            <i class="fas fa-folder-open"></i>
+        </div>
+
+        <span>
+            YOUR CREATIVE SPACE
+        </span>
+
+        <h2>
+            No projects yet
+        </h2>
+
+        <p>
+            Start building your portfolio by adding
+            your first creative project.
+        </p>
+
+        <a
+            href="{{ url_for('admin.add_project') }}"
+            class="portfolio-add-btn"
+        >
+            <i class="fas fa-plus"></i>
+            Add Your First Project
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchInput =
+        document.getElementById("portfolioSearch");
+
+    const cards =
+        document.querySelectorAll(".portfolio-card");
+
+    const filters =
+        document.querySelectorAll(".portfolio-filter");
+
+    const noResults =
+        document.getElementById("portfolioNoResults");
+
+
+    let activeFilter = "all";
+
+
+    function filterProjects() {
+
+        const search =
+            searchInput
+                ? searchInput.value
+                    .toLowerCase()
+                    .trim()
+                : "";
+
+        let visible = 0;
+
+
+        cards.forEach(card => {
+
+            const title =
+                card.dataset.title || "";
+
+            const category =
+                card.dataset.category || "";
+
+
+            const matchesSearch =
+                title.includes(search);
+
+
+            let matchesFilter = true;
+
+
+            if (activeFilter !== "all") {
+
+                if (activeFilter === "web") {
+
+                    matchesFilter =
+                        category.includes("web");
+
+                } else if (activeFilter === "app") {
+
+                    matchesFilter =
+                        category.includes("app") ||
+                        category.includes("application");
+
+                } else if (activeFilter === "branding") {
+
+                    matchesFilter =
+                        category.includes("branding");
+
+                } else if (activeFilter === "graphic") {
+
+                    matchesFilter =
+                        category.includes("graphic");
+
+                }
+
+            }
+
+
+            if (
+                matchesSearch &&
+                matchesFilter
+            ) {
+
+                card.style.display = "";
+
+                visible++;
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+
+        if (noResults) {
+
+            noResults.classList.toggle(
+                "show",
+                visible === 0
+            );
+
+        }
+
+    }
+
+
+    if (searchInput) {
+
+        searchInput.addEventListener(
+            "input",
+            filterProjects
+        );
+
+    }
+
+
+    filters.forEach(filter => {
+
+        filter.addEventListener(
+            "click",
+            function () {
+
+                filters.forEach(item => {
+                    item.classList.remove("active");
+                });
+
+                this.classList.add("active");
+
+                activeFilter =
+                    this.dataset.filter;
+
+                filterProjects();
+
+            }
+        );
+
+    });
+
+});
+
+</script>
+
+{% endblock %}

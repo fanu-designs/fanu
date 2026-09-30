@@ -1,0 +1,492 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+Fanu Designs — Project Enquiries
+{% endblock %}
+
+{% block content %}
+
+<div class="enquiries-page">
+
+```
+<!-- PAGE HEADER -->
+<div class="enquiries-header">
+
+    <div>
+        <span class="page-eyebrow">CLIENT MANAGEMENT</span>
+
+        <h1>
+            Project Enquiries
+        </h1>
+
+        <p>
+            Manage client requests, project discussions and incoming opportunities.
+        </p>
+    </div>
+
+    <div class="enquiries-header-actions">
+        <button class="admin-refresh-btn" onclick="window.location.reload()">
+            <span>↻</span>
+            Refresh
+        </button>
+    </div>
+
+</div>
+
+
+<!-- STATISTICS -->
+<div class="enquiry-stats">
+
+    <div class="enquiry-stat-card">
+        <div class="enquiry-stat-icon">✉</div>
+
+        <div class="enquiry-stat-content">
+            <span>Total Enquiries</span>
+            <strong>{{ total_enquiries }}</strong>
+            <small>All client requests</small>
+        </div>
+    </div>
+
+
+    <div class="enquiry-stat-card new-stat">
+        <div class="enquiry-stat-icon">●</div>
+
+        <div class="enquiry-stat-content">
+            <span>New</span>
+            <strong>{{ new_enquiries }}</strong>
+            <small>Awaiting response</small>
+        </div>
+    </div>
+
+
+    <div class="enquiry-stat-card contacted-stat">
+        <div class="enquiry-stat-icon">✓</div>
+
+        <div class="enquiry-stat-content">
+            <span>Contacted</span>
+            <strong>{{ contacted_enquiries }}</strong>
+            <small>Client contacted</small>
+        </div>
+    </div>
+
+
+    <div class="enquiry-stat-card progress-stat">
+        <div class="enquiry-stat-icon">◔</div>
+
+        <div class="enquiry-stat-content">
+            <span>In Progress</span>
+            <strong>{{ in_progress_enquiries }}</strong>
+            <small>Active discussions</small>
+        </div>
+    </div>
+
+
+    <div class="enquiry-stat-card completed-stat">
+        <div class="enquiry-stat-icon">★</div>
+
+        <div class="enquiry-stat-content">
+            <span>Completed</span>
+            <strong>{{ completed_enquiries }}</strong>
+            <small>Successfully closed</small>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- TOOLBAR -->
+<div class="enquiries-toolbar">
+
+    <div class="enquiry-search">
+
+        <span class="search-icon">⌕</span>
+
+        <input
+            type="text"
+            id="enquirySearch"
+            placeholder="Search enquiries..."
+            onkeyup="filterEnquiries()"
+        >
+
+    </div>
+
+
+    <div class="enquiry-filter">
+
+        <select id="statusFilter" onchange="filterEnquiries()">
+
+            <option value="all">
+                All Statuses
+            </option>
+
+            <option value="New">
+                New
+            </option>
+
+            <option value="Contacted">
+                Contacted
+            </option>
+
+            <option value="In Progress">
+                In Progress
+            </option>
+
+            <option value="Completed">
+                Completed
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+
+<!-- ENQUIRIES TABLE -->
+<div class="enquiries-card">
+
+    <div class="enquiries-card-header">
+
+        <div>
+            <h2>Client Requests</h2>
+
+            <p>
+                Latest enquiries submitted through your website.
+            </p>
+        </div>
+
+        <span class="enquiry-count">
+            {{ total_enquiries }} enquiries
+        </span>
+
+    </div>
+
+
+    {% if enquiries %}
+
+    <div class="enquiries-table-wrapper">
+
+        <table
+            class="professional-enquiries-table"
+            id="enquiriesTable"
+        >
+
+            <thead>
+
+                <tr>
+
+                    <th>CLIENT</th>
+
+                    <th>SERVICE</th>
+
+                    <th>BUDGET</th>
+
+                    <th>STATUS</th>
+
+                    <th>RECEIVED</th>
+
+                    <th>ACTION</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+            {% for enquiry in enquiries %}
+
+                <tr
+                    class="enquiry-row"
+                    data-status="{{ enquiry.status }}"
+                >
+
+                    <!-- CLIENT -->
+                    <td>
+
+                        <div class="enquiry-client">
+
+                            <div class="client-avatar">
+                                {{ enquiry.name[:1]|upper }}
+                            </div>
+
+                            <div class="client-info">
+
+                                <strong>
+                                    {{ enquiry.name }}
+                                </strong>
+
+                                <span>
+                                    {{ enquiry.email }}
+                                </span>
+
+                                {% if enquiry.phone %}
+                                <small>
+                                    {{ enquiry.phone }}
+                                </small>
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- SERVICE -->
+                    <td>
+
+                        <div class="service-cell">
+
+                            <strong>
+                                {{ enquiry.service }}
+                            </strong>
+
+                            <span>
+                                Project enquiry
+                            </span>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- BUDGET -->
+                    <td>
+
+                        {% if enquiry.budget %}
+
+                        <span class="budget-value">
+                            {{ enquiry.budget }}
+                        </span>
+
+                        {% else %}
+
+                        <span class="not-provided">
+                            Not specified
+                        </span>
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- STATUS -->
+                    <td>
+
+                        {% if enquiry.status == "New" %}
+
+                            <span class="enquiry-status status-new">
+                                <i></i>
+                                New
+                            </span>
+
+                        {% elif enquiry.status == "Contacted" %}
+
+                            <span class="enquiry-status status-contacted">
+                                <i></i>
+                                Contacted
+                            </span>
+
+                        {% elif enquiry.status == "In Progress" %}
+
+                            <span class="enquiry-status status-progress">
+                                <i></i>
+                                In Progress
+                            </span>
+
+                        {% elif enquiry.status == "Completed" %}
+
+                            <span class="enquiry-status status-completed">
+                                <i></i>
+                                Completed
+                            </span>
+
+                        {% else %}
+
+                            <span class="enquiry-status">
+                                <i></i>
+                                {{ enquiry.status }}
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- DATE -->
+                    <td>
+
+                        <div class="enquiry-date">
+
+                            <strong>
+                                {{ enquiry.created_at.strftime("%d %b %Y") }}
+                            </strong>
+
+                            <span>
+                                {{ enquiry.created_at.strftime("%I:%M %p") }}
+                            </span>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- ACTION -->
+                    <td>
+
+                        <div class="enquiry-actions">
+
+                            <a
+                                href="{{ url_for('admin.enquiry_detail', enquiry_id=enquiry.id) }}"
+                                class="view-enquiry-btn"
+                                title="View enquiry"
+                            >
+                                View
+                                <span>→</span>
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- EMPTY SEARCH RESULT -->
+    <div
+        id="noSearchResults"
+        class="no-search-results"
+        style="display:none;"
+    >
+
+        <div>
+            ⌕
+        </div>
+
+        <h3>
+            No enquiries found
+        </h3>
+
+        <p>
+            Try changing your search or status filter.
+        </p>
+
+    </div>
+
+
+    {% else %}
+
+    <!-- NO ENQUIRIES -->
+    <div class="empty-enquiries">
+
+        <div class="empty-enquiry-icon">
+            ✉
+        </div>
+
+        <h3>
+            No enquiries yet
+        </h3>
+
+        <p>
+            When visitors submit project enquiries through your website,
+            they will appear here.
+        </p>
+
+        <a
+            href="{{ url_for('main.index') }}#contact"
+            target="_blank"
+            class="view-website-btn"
+        >
+            View Contact Form
+            <span>↗</span>
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+```
+
+</div>
+
+<script>
+
+function filterEnquiries() {
+
+    const searchInput =
+        document.getElementById("enquirySearch");
+
+    const statusFilter =
+        document.getElementById("statusFilter");
+
+    const search =
+        searchInput.value.toLowerCase().trim();
+
+    const status =
+        statusFilter.value;
+
+    const rows =
+        document.querySelectorAll(".enquiry-row");
+
+    let visibleRows = 0;
+
+    rows.forEach(function(row) {
+
+        const rowText =
+            row.innerText.toLowerCase();
+
+        const rowStatus =
+            row.getAttribute("data-status");
+
+        const matchesSearch =
+            rowText.includes(search);
+
+        const matchesStatus =
+            status === "all" ||
+            rowStatus === status;
+
+        if (
+            matchesSearch &&
+            matchesStatus
+        ) {
+
+            row.style.display = "";
+
+            visibleRows++;
+
+        } else {
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+
+    const noResults =
+        document.getElementById("noSearchResults");
+
+    if (noResults) {
+
+        noResults.style.display =
+            visibleRows === 0
+            ? "block"
+            : "none";
+
+    }
+
+}
+
+</script>
+
+{% endblock %}

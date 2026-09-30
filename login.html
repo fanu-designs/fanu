@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Login — Fanu Designs
+{% endblock %}
+
+{% block content %}
+
+<section class="admin-login">
+
+    <div class="admin-login-card">
+
+        <div class="admin-brand">
+            <span>FANU</span>
+            <small>DESIGNS</small>
+        </div>
+
+        <p class="admin-label">
+            ADMINISTRATION
+        </p>
+
+        <h1>
+            Welcome <span>back.</span>
+        </h1>
+
+        <p class="admin-description">
+            Sign in to manage your portfolio, services,
+            enquiries and website analytics.
+        </p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                {% for category, message in messages %}
+
+                    <div class="admin-alert {{ category }}">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+        <form method="POST">
+
+            {{ form.hidden_tag() }}
+
+            <div class="admin-field">
+
+                <label>
+                    Username
+                </label>
+
+                {{ form.username(
+                    placeholder="Enter username",
+                    autocomplete="username"
+                ) }}
+
+            </div>
+
+
+            <div class="admin-field">
+
+                <label>
+                    Password
+                </label>
+
+                {{ form.password(
+                    placeholder="Enter password",
+                    autocomplete="current-password"
+                ) }}
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="admin-login-btn"
+            >
+                Sign In
+                <span>→</span>
+            </button>
+
+        </form>
+
+        <a
+            href="{{ url_for('main.index') }}"
+            class="back-home"
+        >
+            ← Back to website
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

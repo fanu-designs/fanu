@@ -1,0 +1,1245 @@
+{% extends "base.html" %}
+
+{% block title %}
+About Fanu Designs | Creative Designer & Digital Developer
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================================
+     ABOUT PAGE NAVBAR
+===================================================== -->
+
+<header class="about-navbar" id="aboutNavbar">
+
+    <div class="about-nav-container">
+
+        <!-- LOGO -->
+        <a href="{{ url_for('main.index') }}" class="about-logo">
+            FANU<span>DESIGNS</span>
+        </a>
+
+
+        <!-- NAVIGATION -->
+        <nav class="about-nav-links" id="aboutNavLinks">
+
+            <a href="{{ url_for('main.index') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('main.services') }}">Services</a>
+
+            <a href="{{ url_for('main.portfolio') }}">Portfolio</a>
+
+            <a
+                href="{{ url_for('main.about') }}"
+                class="active"
+            >
+                About
+            </a>
+
+            <a href="{{ url_for('main.index') }}#pricing">
+                Pricing
+            </a>
+
+            <a href="{{ url_for('main.index') }}#contact">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <!-- CTA -->
+        <a
+            href="{{ url_for('main.index') }}#contact"
+            class="about-nav-cta"
+        >
+            <span>Start a Project</span>
+            <strong>↗</strong>
+        </a>
+
+
+        <!-- MOBILE MENU -->
+        <button
+            class="about-menu-toggle"
+            id="aboutMenuToggle"
+            aria-label="Open navigation"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     ABOUT HERO
+===================================================== -->
+
+<section class="about-page-hero">
+
+    <div class="about-hero-grid"></div>
+
+    <div class="about-hero-glow glow-left"></div>
+    <div class="about-hero-glow glow-right"></div>
+
+
+    <div class="about-hero-content">
+
+        <div class="about-hero-eyebrow">
+            <span></span>
+            ABOUT FANU DESIGNS
+        </div>
+
+        <h1>
+            Creativity with
+            <span>purpose.</span>
+        </h1>
+
+        <p>
+            I combine creative design, technology and strategy
+            to transform ideas into powerful brands and digital
+            experiences.
+        </p>
+
+        <div class="about-hero-actions">
+
+            <a
+                href="#story"
+                class="about-primary-btn"
+            >
+                Discover My Story
+                <span>↓</span>
+            </a>
+
+            <a
+                href="{{ url_for('main.index') }}#contact"
+                class="about-secondary-btn"
+            >
+                Work With Me
+                <span>↗</span>
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="about-hero-side">
+
+        <span>01</span>
+
+        <div></div>
+
+        <small>
+            DESIGN<br>
+            DEVELOP<br>
+            BRAND
+        </small>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STORY
+===================================================== -->
+
+<section class="about-story" id="story">
+
+    <div class="container">
+
+        <div class="about-story-grid">
+
+            <div class="about-story-label">
+
+                <span>
+                    01 — MY STORY
+                </span>
+
+                <div class="story-line"></div>
+
+            </div>
+
+
+            <div class="about-story-content">
+
+                <h2>
+                    I believe great design
+                    should <span>do more</span>
+                    than look good.
+                </h2>
+
+                <p>
+                    Fanu Designs is a creative design and digital
+                    development studio focused on helping businesses,
+                    organizations and individuals turn ideas into
+                    meaningful visual and digital experiences.
+                </p>
+
+                <p>
+                    From logos and brand identities to websites,
+                    applications and complete digital platforms,
+                    I bring creativity and technology together to
+                    create solutions that communicate clearly,
+                    perform effectively and leave a lasting impression.
+                </p>
+
+                <div class="about-signature">
+                    <strong>FANU DESIGNS</strong>
+                    <span>We Design. We Build. We Brand.</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     VALUES
+===================================================== -->
+
+<section class="about-values">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                02 — WHAT DRIVES ME
+            </p>
+
+            <h2>
+                Design with
+                <span>meaning.</span>
+            </h2>
+
+        </div>
+
+
+        <div class="about-values-grid">
+
+            <article class="about-value-card">
+
+                <span>01</span>
+
+                <div class="value-icon">✦</div>
+
+                <h3>
+                    Creativity
+                </h3>
+
+                <p>
+                    Every project starts with an idea. I transform
+                    that idea into visual experiences that feel
+                    original, memorable and intentional.
+                </p>
+
+            </article>
+
+
+            <article class="about-value-card featured">
+
+                <span>02</span>
+
+                <div class="value-icon">
+                    &lt;/&gt;
+                </div>
+
+                <h3>
+                    Technology
+                </h3>
+
+                <p>
+                    Design becomes more powerful when combined with
+                    technology. I build responsive, functional and
+                    scalable digital experiences.
+                </p>
+
+            </article>
+
+
+            <article class="about-value-card">
+
+                <span>03</span>
+
+                <div class="value-icon">
+                    ◈
+                </div>
+
+                <h3>
+                    Impact
+                </h3>
+
+                <p>
+                    Good work should create results. Every solution
+                    is designed around communication, usability,
+                    growth and real-world goals.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PROCESS
+===================================================== -->
+
+<section class="about-process">
+
+    <div class="container">
+
+        <div class="about-process-heading">
+
+            <p class="section-label">
+                03 — HOW I WORK
+            </p>
+
+            <h2>
+                From idea to
+                <span>reality.</span>
+            </h2>
+
+        </div>
+
+
+        <div class="process-grid">
+
+            <div class="process-item">
+
+                <strong>01</strong>
+
+                <h3>
+                    Discover
+                </h3>
+
+                <p>
+                    Understand the idea, audience, goals and
+                    challenges behind the project.
+                </p>
+
+            </div>
+
+
+            <div class="process-item">
+
+                <strong>02</strong>
+
+                <h3>
+                    Design
+                </h3>
+
+                <p>
+                    Create the visual direction, interface and
+                    experience around the project's purpose.
+                </p>
+
+            </div>
+
+
+            <div class="process-item">
+
+                <strong>03</strong>
+
+                <h3>
+                    Build
+                </h3>
+
+                <p>
+                    Turn the approved concept into a functional
+                    digital product or brand system.
+                </p>
+
+            </div>
+
+
+            <div class="process-item">
+
+                <strong>04</strong>
+
+                <h3>
+                    Deliver
+                </h3>
+
+                <p>
+                    Refine, test and deliver a polished solution
+                    ready for the real world.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     MOBILE NAV SCRIPT
+===================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const navbar =
+        document.getElementById("aboutNavbar");
+
+    const menuToggle =
+        document.getElementById("aboutMenuToggle");
+
+    const navLinks =
+        document.getElementById("aboutNavLinks");
+
+
+    /* SCROLL EFFECT */
+
+    window.addEventListener("scroll", function () {
+
+        if (window.scrollY > 30) {
+
+            navbar.classList.add("scrolled");
+
+        } else {
+
+            navbar.classList.remove("scrolled");
+
+        }
+
+    });
+
+
+    /* MOBILE MENU */
+
+    if (menuToggle) {
+
+        menuToggle.addEventListener("click", function () {
+
+            menuToggle.classList.toggle("open");
+
+            navLinks.classList.toggle("open");
+
+        });
+
+    }
+
+
+    /* CLOSE MOBILE MENU */
+
+    navLinks.querySelectorAll("a").forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            menuToggle.classList.remove("open");
+
+            navLinks.classList.remove("open");
+
+        });
+
+    });
+
+});
+
+</script>
+
+<!-- =====================================================
+     INTRODUCTION
+===================================================== -->
+
+<section class="about-introduction">
+
+    <div class="container">
+
+        <div class="about-intro-grid">
+
+            <div class="about-intro-label">
+
+                <span>WHO I AM</span>
+
+                <div class="intro-line"></div>
+
+            </div>
+
+
+            <div class="about-intro-content">
+
+                <h2>
+                    I turn ideas into
+                    <span>visual and digital experiences.</span>
+                </h2>
+
+                <p class="about-intro-lead">
+                    I'm a creative designer and developer passionate
+                    about helping businesses communicate better,
+                    look professional and grow through thoughtful
+                    design and technology.
+                </p>
+
+                <p>
+                    My work sits at the intersection of creativity
+                    and technology. I combine graphic design,
+                    branding, UI/UX and web development to create
+                    solutions that are not only visually impressive
+                    but also practical, responsive and purposeful.
+                </p>
+
+                <p>
+                    Whether it's a logo, a complete brand identity,
+                    a business website, an e-commerce platform or
+                    a custom management system, I approach every
+                    project with the same goal:
+                    <strong>make the idea better than it started.</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PHILOSOPHY
+===================================================== -->
+
+<section class="about-philosophy">
+
+    <div class="container">
+
+        <div class="section-heading centered">
+
+            <p class="section-label">
+                02 — MY APPROACH
+            </p>
+
+            <h2>
+                From idea to
+                <span>reality.</span>
+            </h2>
+
+            <p>
+                Every project follows a simple philosophy:
+                understand the idea, create with intention and
+                build something that works.
+            </p>
+
+        </div>
+
+
+        <div class="philosophy-grid">
+
+            <article class="philosophy-card">
+
+                <span class="philosophy-number">01</span>
+
+                <div class="philosophy-icon">
+                    ◇
+                </div>
+
+                <h3>Think</h3>
+
+                <p>
+                    I start by understanding the business,
+                    the audience, the problem and the desired
+                    outcome before creating anything.
+                </p>
+
+            </article>
+
+
+            <article class="philosophy-card featured">
+
+                <span class="philosophy-number">02</span>
+
+                <div class="philosophy-icon">
+                    ✦
+                </div>
+
+                <h3>Design</h3>
+
+                <p>
+                    Ideas are transformed into visual systems,
+                    interfaces and experiences that communicate
+                    clearly and create an emotional connection.
+                </p>
+
+            </article>
+
+
+            <article class="philosophy-card">
+
+                <span class="philosophy-number">03</span>
+
+                <div class="philosophy-icon">
+                    &lt;/&gt;
+                </div>
+
+                <h3>Build</h3>
+
+                <p>
+                    Designs become functional digital products
+                    through clean, responsive and scalable
+                    development.
+                </p>
+
+            </article>
+
+
+            <article class="philosophy-card">
+
+                <span class="philosophy-number">04</span>
+
+                <div class="philosophy-icon">
+                    ↗
+                </div>
+
+                <h3>Deliver</h3>
+
+                <p>
+                    The final solution is refined, tested and
+                    prepared to help the client communicate,
+                    connect and grow.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CREATIVE + TECHNICAL
+===================================================== -->
+
+<section class="about-expertise">
+
+    <div class="container">
+
+        <div class="expertise-heading">
+
+            <div>
+
+                <p class="section-label">
+                    03 — WHAT I BRING
+                </p>
+
+                <h2>
+                    Creative thinking.
+                    <span>Technical execution.</span>
+                </h2>
+
+            </div>
+
+            <p>
+                The combination of design and development allows
+                me to understand a project from both sides —
+                how it should look and how it should work.
+            </p>
+
+        </div>
+
+
+        <div class="expertise-grid">
+
+            <!-- DESIGN -->
+
+            <div class="expertise-card">
+
+                <div class="expertise-top">
+
+                    <span class="expertise-icon">
+                        ✦
+                    </span>
+
+                    <span class="expertise-number">
+                        01
+                    </span>
+
+                </div>
+
+                <h3>
+                    Creative
+                    <span>Design</span>
+                </h3>
+
+                <p>
+                    Building strong visual identities and
+                    experiences that make brands recognizable,
+                    professional and memorable.
+                </p>
+
+                <div class="expertise-list">
+
+                    <span>Graphic Design</span>
+                    <span>Brand Identity</span>
+                    <span>Logo Design</span>
+                    <span>UI / UX Design</span>
+                    <span>Social Media Design</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- DEVELOPMENT -->
+
+            <div class="expertise-card expertise-development">
+
+                <div class="expertise-top">
+
+                    <span class="expertise-icon">
+                        &lt;/&gt;
+                    </span>
+
+                    <span class="expertise-number">
+                        02
+                    </span>
+
+                </div>
+
+                <h3>
+                    Digital
+                    <span>Development</span>
+                </h3>
+
+                <p>
+                    Turning designs into responsive websites,
+                    applications and digital systems built around
+                    real business needs.
+                </p>
+
+                <div class="expertise-list">
+
+                    <span>Frontend Development</span>
+                    <span>Backend Development</span>
+                    <span>Web Applications</span>
+                    <span>Database Systems</span>
+                    <span>Responsive Development</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     WHY FANU
+===================================================== -->
+
+<section class="why-fanu-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                04 — WHY FANU DESIGNS
+            </p>
+
+            <h2>
+                More than just
+                <span>good design.</span>
+            </h2>
+
+        </div>
+
+
+        <div class="why-fanu-grid">
+
+            <article class="why-card">
+
+                <span>01</span>
+
+                <h3>Purpose Driven</h3>
+
+                <p>
+                    Every design decision has a reason.
+                    The goal is not simply to make something
+                    beautiful, but to make it effective.
+                </p>
+
+            </article>
+
+
+            <article class="why-card">
+
+                <span>02</span>
+
+                <h3>Business Focused</h3>
+
+                <p>
+                    Creative work is designed around real
+                    business objectives, audiences and
+                    opportunities.
+                </p>
+
+            </article>
+
+
+            <article class="why-card">
+
+                <span>03</span>
+
+                <h3>Detail Oriented</h3>
+
+                <p>
+                    From typography and spacing to interaction
+                    and responsiveness, details matter.
+                </p>
+
+            </article>
+
+
+            <article class="why-card">
+
+                <span>04</span>
+
+                <h3>One Creative Partner</h3>
+
+                <p>
+                    Design, branding, UI/UX and development
+                    can all come together under one creative
+                    direction.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     JOURNEY
+===================================================== -->
+
+<section class="about-journey">
+
+    <div class="container">
+
+        <div class="journey-heading">
+
+            <p class="section-label">
+                05 — THE JOURNEY
+            </p>
+
+            <h2>
+                Growing through
+                <span>creativity.</span>
+            </h2>
+
+        </div>
+
+
+        <div class="journey-timeline">
+
+            <div class="journey-item">
+
+                <div class="journey-year">
+                    01
+                </div>
+
+                <div class="journey-marker"></div>
+
+                <div class="journey-content">
+
+                    <span>
+                        FOUNDATION
+                    </span>
+
+                    <h3>
+                        Discovering Design
+                    </h3>
+
+                    <p>
+                        Started building a foundation in graphic
+                        design, visual communication and creative
+                        problem solving.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="journey-item">
+
+                <div class="journey-year">
+                    02
+                </div>
+
+                <div class="journey-marker"></div>
+
+                <div class="journey-content">
+
+                    <span>
+                        EXPERIENCE
+                    </span>
+
+                    <h3>
+                        Working With Real Brands
+                    </h3>
+
+                    <p>
+                        Worked on branding, marketing materials,
+                        digital designs and creative projects
+                        for businesses and organizations.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="journey-item">
+
+                <div class="journey-year">
+                    03
+                </div>
+
+                <div class="journey-marker"></div>
+
+                <div class="journey-content">
+
+                    <span>
+                        EXPANSION
+                    </span>
+
+                    <h3>
+                        Design Meets Development
+                    </h3>
+
+                    <p>
+                        Expanded into frontend development,
+                        backend systems, databases and
+                        application development.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="journey-item current">
+
+                <div class="journey-year">
+                    NOW
+                </div>
+
+                <div class="journey-marker"></div>
+
+                <div class="journey-content">
+
+                    <span>
+                        FANU DESIGNS
+                    </span>
+
+                    <h3>
+                        Building Digital Experiences
+                    </h3>
+
+                    <p>
+                        Bringing design and technology together
+                        to create stronger brands, better websites
+                        and powerful digital products.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TOOLS
+===================================================== -->
+
+<section class="about-tools">
+
+    <div class="container">
+
+        <div class="section-heading centered">
+
+            <p class="section-label">
+                06 — TOOLS & TECHNOLOGY
+            </p>
+
+            <h2>
+                The tools behind
+                <span>the work.</span>
+            </h2>
+
+        </div>
+
+
+        <div class="about-tools-grid">
+
+            <div class="about-tool">
+                <strong>Ps</strong>
+                <span>Photoshop</span>
+            </div>
+
+            <div class="about-tool">
+                <strong>Ai</strong>
+                <span>Illustrator</span>
+            </div>
+
+            <div class="about-tool">
+                <strong>CD</strong>
+                <span>CorelDRAW</span>
+            </div>
+
+            <div class="about-tool">
+                <strong>Fi</strong>
+                <span>Figma</span>
+            </div>
+
+            <div class="about-tool">
+                <strong>Ca</strong>
+                <span>Canva</span>
+            </div>
+
+            <div class="about-tool">
+                <strong>HTML</strong>
+                <span>HTML / CSS</span>
+            </div>
+
+            <div class="about-tool">
+                <strong>JS</strong>
+                <span>JavaScript</span>
+            </div>
+
+            <div class="about-tool">
+                <strong>Py</strong>
+                <span>Python</span>
+            </div>
+
+            <div class="about-tool">
+                <strong>Fl</strong>
+                <span>Flask</span>
+            </div>
+
+            <div class="about-tool">
+                <strong>SQL</strong>
+                <span>Databases</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<section class="about-stats">
+
+    <div class="container">
+
+        <div class="about-stats-grid">
+
+            <div>
+                <strong>50+</strong>
+                <span>Projects Delivered</span>
+            </div>
+
+            <div>
+                <strong>30+</strong>
+                <span>Happy Clients</span>
+            </div>
+
+            <div>
+                <strong>3+</strong>
+                <span>Years Experience</span>
+            </div>
+
+            <div>
+                <strong>10+</strong>
+                <span>Creative Services</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL CTA
+===================================================== -->
+
+<section class="about-cta">
+
+    <div class="about-cta-glow"></div>
+
+    <div class="container">
+
+        <p class="section-label">
+            HAVE AN IDEA?
+        </p>
+
+        <h2>
+            Let's create something
+            <span>worth remembering.</span>
+        </h2>
+
+        <p>
+            Tell me what you're building and let's turn
+            your idea into a powerful visual or digital
+            experience.
+        </p>
+
+        <a
+            href="{{ url_for('main.index') }}#contact"
+            class="btn btn-primary"
+        >
+            Start a Project
+            <span>↗</span>
+        </a>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+
+                <a href="#home" class="logo">
+                    FANU<span>DESIGNS</span>
+                </a>
+
+                <p>
+                    Creative design, branding and digital development
+                    for businesses ready to stand out.
+                </p>
+
+                <div class="social-links">
+
+                    <a href="#" aria-label="Facebook">f</a>
+                    <a href="#" aria-label="Instagram">◎</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="WhatsApp">W</a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Explore</h4>
+
+                <a href="#home">Home</a>
+                <a href="{{ url_for('main.about') }}">About</a>
+                <a href="{{ url_for('main.services') }}">Services</a>
+                <a href="{{ url_for('main.portfolio') }}">Portfolio</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Services</h4>
+
+                <a href="#services">Graphic Design</a>
+                <a href="#services">Branding</a>
+                <a href="#services">Web Design</a>
+                <a href="#services">UI / UX</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Let's Talk</h4>
+
+                <a href="mailto:fanuelkaasewe@gmail.com">
+                    fanuelkaasewe@gmail.com
+                </a>
+
+                <a href="tel:+254740704681">
+                    +254 740 704 681
+                </a>
+
+                <span>
+                    Kenya
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 Fanu Designs. All rights reserved.
+            </span>
+
+            <span>
+                We Design. We Build. We Brand.
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- FLOATING WHATSAPP -->
+
+<a
+    href="https://wa.me/254740704681"
+    target="_blank"
+    class="whatsapp-float"
+    aria-label="Chat on WhatsApp"
+>
+    W
+</a>
+
+
+{% endblock %}

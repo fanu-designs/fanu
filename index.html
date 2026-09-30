@@ -1,0 +1,1791 @@
+{% extends "base.html" %}
+
+{% block title %}
+Fanu Designs | Creative Design & Digital Experiences
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar" id="navbar">
+
+    <div class="container nav-container">
+
+        <a href="#home" class="logo">
+            FANU<span>DESIGNS</span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#home" class="active">Home</a>
+            <a href="{{ url_for('main.about') }}">
+                About
+            </a>
+            <a href="{{ url_for('main.services') }}">Services</a>
+            <a href="{{ url_for('main.portfolio') }}">Portfolio</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <a href="#contact" class="nav-cta">
+            Start a Project
+            <span>↗</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-grid"></div>
+
+    <div class="hero-glow glow-one"></div>
+    <div class="hero-glow glow-two"></div>
+
+    <div class="container hero-container">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                <span class="status-dot"></span>
+                Available for new projects
+            </div>
+
+            <p class="hero-mini-title">
+                CREATIVE DESIGN × DIGITAL DEVELOPMENT
+            </p>
+
+            <h1>
+                Turning Ideas Into
+                <span>Powerful</span>
+                Digital Experiences.
+            </h1>
+
+            <p class="hero-description">
+                I design brands, websites, applications and digital
+                experiences that don't just look beautiful —
+                they communicate, engage and deliver results.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#portfolio" class="btn btn-primary">
+                    Explore My Work
+                    <span>↗</span>
+                </a>
+
+                <a href="#contact" class="btn btn-outline">
+                    Start a Project
+                </a>
+
+            </div>
+
+            <div class="hero-trust">
+
+                <div class="trust-avatars">
+                    <div>F</div>
+                    <div>C</div>
+                    <div>W</div>
+                    <div>+</div>
+                </div>
+
+                <div>
+                    <strong>50+ Projects Delivered</strong>
+                    <small>Design • Branding • Development</small>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="visual-orbit orbit-one"></div>
+            <div class="visual-orbit orbit-two"></div>
+
+            <div class="visual-card main-visual-card">
+
+                <div class="visual-top">
+                    <span>FANU</span>
+                    <span>01 / 04</span>
+                </div>
+
+                <div class="visual-center">
+
+                    <div class="visual-logo">
+                        <span>F</span>
+                    </div>
+
+                    <p>CREATIVE</p>
+
+                    <h3>
+                        DIGITAL<br>
+                        EXPERIENCES
+                    </h3>
+
+                </div>
+
+                <div class="visual-bottom">
+                    <span>DESIGN</span>
+                    <span>DEVELOP</span>
+                    <span>BRAND</span>
+                </div>
+
+            </div>
+
+            <div class="floating-card design-card">
+
+                <div class="floating-icon">✦</div>
+
+                <div>
+                    <strong>Creative Design</strong>
+                    <small>Visual Identity</small>
+                </div>
+
+            </div>
+
+            <div class="floating-card code-card">
+
+                <div class="floating-icon">
+                    &lt;/&gt;
+                </div>
+
+                <div>
+                    <strong>Web Development</strong>
+                    <small>Modern & Responsive</small>
+                </div>
+
+            </div>
+
+            <div class="floating-number">
+
+                <span>03</span>
+
+                <small>
+                    YEARS<br>
+                    EXPERIENCE
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <a href="#about" class="scroll-indicator">
+        <span></span>
+        Scroll to explore
+    </a>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section class="about-section" id="about">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div>
+                <p class="section-label">
+                    01 — ABOUT FANU
+                </p>
+            </div>
+
+            <div>
+                <h2>
+                    Creativity meets
+                    <span>technology.</span>
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1000&q=85"
+                    alt="Creative design workspace"
+                >
+
+                <div class="image-tag">
+                    <span>✦</span>
+                    Creative Studio
+                </div>
+
+            </div>
+
+
+            <div class="about-content">
+
+                <p class="about-lead">
+                    I'm a creative designer and developer passionate
+                    about transforming ideas into powerful visual
+                    and digital experiences.
+                </p>
+
+                <p>
+                    From a simple logo to a complete digital platform,
+                    I combine design thinking, technology and strategy
+                    to create solutions that are visually impressive,
+                    functional and built around real business goals.
+                </p>
+
+                <div class="about-features">
+
+                    <div>
+                        <span>01</span>
+                        <strong>Think</strong>
+                        <small>Understand the idea</small>
+                    </div>
+
+                    <div>
+                        <span>02</span>
+                        <strong>Design</strong>
+                        <small>Create the experience</small>
+                    </div>
+
+                    <div>
+                        <span>03</span>
+                        <strong>Build</strong>
+                        <small>Bring it to life</small>
+                    </div>
+
+                </div>
+
+                <a href="#contact" class="text-link">
+                    Let's create something great
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<section class="stats-section">
+
+    <div class="container stats-grid">
+
+        <div class="stat">
+            <strong data-count="50">0</strong>
+            <span>Projects Completed</span>
+        </div>
+
+        <div class="stat">
+            <strong data-count="30">0</strong>
+            <span>Happy Clients</span>
+        </div>
+
+        <div class="stat">
+            <strong data-count="3">0</strong>
+            <span>Years Experience</span>
+        </div>
+
+        <div class="stat">
+            <strong data-count="10">0</strong>
+            <span>Creative Services</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SERVICES
+===================================================== -->
+
+<section class="services-section" id="services">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div>
+                <p class="section-label">
+                    02 — WHAT I DO
+                </p>
+            </div>
+
+            <div>
+                <h2>
+                    Services built around
+                    <span>your vision.</span>
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div class="services-grid">
+
+            <article class="service-card">
+
+                <div class="service-number">01</div>
+
+                <div class="service-icon">✦</div>
+
+                <h3>Graphic Design</h3>
+
+                <p>
+                    Posters, flyers, brochures, social media graphics,
+                    marketing materials and creative visual content.
+                </p>
+
+                <div class="service-price">
+                    From <strong>KSh 800</strong>
+                </div>
+
+                <a href="#contact">Explore Service →</a>
+
+            </article>
+
+
+            <article class="service-card featured-service">
+
+                <div class="service-number">02</div>
+
+                <div class="service-icon">&lt;/&gt;</div>
+
+                <h3>Web Design & Development</h3>
+
+                <p>
+                    Modern, responsive websites designed to represent
+                    your brand and convert visitors into customers.
+                </p>
+
+                <div class="service-price">
+                    From <strong>KSh 15,000</strong>
+                </div>
+
+                <a href="#contact">Explore Service →</a>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-number">03</div>
+
+                <div class="service-icon">◈</div>
+
+                <h3>Branding</h3>
+
+                <p>
+                    Complete visual identities including logos,
+                    colors, typography, stationery and brand systems.
+                </p>
+
+                <div class="service-price">
+                    From <strong>KSh 10,000</strong>
+                </div>
+
+                <a href="#contact">Explore Service →</a>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-number">04</div>
+
+                <div class="service-icon">⌘</div>
+
+                <h3>UI / UX Design</h3>
+
+                <p>
+                    User-focused interfaces and experiences for
+                    websites, mobile applications and digital products.
+                </p>
+
+                <div class="service-price">
+                    From <strong>KSh 10,000</strong>
+                </div>
+
+                <a href="#contact">Explore Service →</a>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-number">05</div>
+
+                <div class="service-icon">◎</div>
+
+                <h3>Logo Design</h3>
+
+                <p>
+                    Memorable and professional logos created to give
+                    your business a recognizable visual identity.
+                </p>
+
+                <div class="service-price">
+                    From <strong>KSh 2,500</strong>
+                </div>
+
+                <a href="#contact">Explore Service →</a>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-number">06</div>
+
+                <div class="service-icon">▣</div>
+
+                <h3>Web Applications</h3>
+
+                <p>
+                    Custom management systems, dashboards, portals,
+                    booking systems and business applications.
+                </p>
+
+                <div class="service-price">
+                    From <strong>KSh 60,000</strong>
+                </div>
+
+                <a href="#contact">Explore Service →</a>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     SKILLS & TOOLS
+========================= -->
+<section class="skills-section" id="skills">
+
+    <div class="container">
+
+        <div class="skills-heading">
+
+            <div>
+                <p class="section-label">03 — SKILLS & EXPERTISE</p>
+
+                <h2>
+                    Creative skills.
+                    <span>Technical power.</span>
+                </h2>
+            </div>
+
+            <p>
+                A combination of creative design thinking and modern
+                development skills allows me to take projects from
+                the first idea to a finished digital experience.
+            </p>
+
+        </div>
+
+
+        <div class="skills-layout">
+
+            <!-- LEFT -->
+            <div class="skills-intro">
+
+                <div class="skills-number">01</div>
+
+                <h3>
+                    Design meets
+                    <span>technology.</span>
+                </h3>
+
+                <p>
+                    I don't just make things look good. I design with
+                    purpose, build with performance in mind and create
+                    experiences that help businesses communicate,
+                    connect and grow.
+                </p>
+
+                <a href="#contact" class="text-link">
+                    Let's build something <span>→</span>
+                </a>
+
+            </div>
+
+
+            <!-- RIGHT -->
+            <div class="skills-list">
+
+                <!-- Skill -->
+                <div class="skill-item">
+
+                    <div class="skill-top">
+                        <span>Graphic Design</span>
+                        <span>95%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <span style="width:95%"></span>
+                    </div>
+
+                    <div class="skill-tools">
+                        CorelDRAW · Photoshop · Illustrator · Canva
+                    </div>
+
+                </div>
+
+
+                <!-- Skill -->
+                <div class="skill-item">
+
+                    <div class="skill-top">
+                        <span>Brand Identity</span>
+                        <span>92%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <span style="width:92%"></span>
+                    </div>
+
+                    <div class="skill-tools">
+                        Logo Design · Visual Identity · Brand Systems
+                    </div>
+
+                </div>
+
+
+                <!-- Skill -->
+                <div class="skill-item">
+
+                    <div class="skill-top">
+                        <span>UI / UX Design</span>
+                        <span>90%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <span style="width:90%"></span>
+                    </div>
+
+                    <div class="skill-tools">
+                        Figma · Wireframing · Prototyping · User Flows
+                    </div>
+
+                </div>
+
+
+                <!-- Skill -->
+                <div class="skill-item">
+
+                    <div class="skill-top">
+                        <span>Frontend Development</span>
+                        <span>94%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <span style="width:94%"></span>
+                    </div>
+
+                    <div class="skill-tools">
+                        HTML · CSS · JavaScript · Responsive Design
+                    </div>
+
+                </div>
+
+
+                <!-- Skill -->
+                <div class="skill-item">
+
+                    <div class="skill-top">
+                        <span>Backend Development</span>
+                        <span>86%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <span style="width:86%"></span>
+                    </div>
+
+                    <div class="skill-tools">
+                        Python · Flask · APIs · Authentication
+                    </div>
+
+                </div>
+
+
+                <!-- Skill -->
+                <div class="skill-item">
+
+                    <div class="skill-top">
+                        <span>Database & Systems</span>
+                        <span>85%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <span style="width:85%"></span>
+                    </div>
+
+                    <div class="skill-tools">
+                        SQLite · MySQL · SQL · Management Systems
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOOLS -->
+        <div class="tools-area">
+
+            <div class="tools-title">
+                <span>TOOLS I WORK WITH</span>
+            </div>
+
+            <div class="tools-grid">
+
+                <div class="tool-card">
+                    <strong>Ps</strong>
+                    <span>Photoshop</span>
+                </div>
+
+                <div class="tool-card">
+                    <strong>Ai</strong>
+                    <span>Illustrator</span>
+                </div>
+
+                <div class="tool-card">
+                    <strong>CD</strong>
+                    <span>CorelDRAW</span>
+                </div>
+
+                <div class="tool-card">
+                    <strong>Fi</strong>
+                    <span>Figma</span>
+                </div>
+
+                <div class="tool-card">
+                    <strong>Ca</strong>
+                    <span>Canva</span>
+                </div>
+
+                <div class="tool-card">
+                    <strong>HT</strong>
+                    <span>HTML / CSS</span>
+                </div>
+
+                <div class="tool-card">
+                    <strong>JS</strong>
+                    <span>JavaScript</span>
+                </div>
+
+                <div class="tool-card">
+                    <strong>Py</strong>
+                    <span>Python</span>
+                </div>
+
+                <div class="tool-card">
+                    <strong>Fl</strong>
+                    <span>Flask</span>
+                </div>
+
+                <div class="tool-card">
+                    <strong>SQL</strong>
+                    <span>SQL</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PORTFOLIO / CASE STUDIES
+===================================================== -->
+
+<section class="portfolio-section" id="portfolio">
+
+    <div class="container">
+
+        <div class="portfolio-top">
+
+            <div>
+                <p class="section-label">04 — COMPLETED PROJECTS</p>
+
+                <h2>
+                    Work I've <span>brought to life.</span>
+                </h2>
+            </div>
+
+                <p class="portfolio-description">
+                    Explore selected projects completed for businesses,
+                    organizations and creative ventures — from brand identities
+                    and marketing designs to websites, e-commerce platforms
+                    and custom management systems.
+                </p>
+        </div>
+
+
+        <!-- FILTERS -->
+
+        <div class="portfolio-filters">
+
+            <button class="filter-btn active" data-filter="all">
+                All Work
+            </button>
+
+            <button class="filter-btn" data-filter="branding">
+                Branding
+            </button>
+
+            <button class="filter-btn" data-filter="graphic">
+                Graphic Design
+            </button>
+
+            <button class="filter-btn" data-filter="web">
+                Websites
+            </button>
+
+            <button class="filter-btn" data-filter="app">
+                Applications
+            </button>
+
+            <button class="filter-btn" data-filter="uiux">
+                UI / UX
+            </button>
+
+        </div>
+
+
+        <!-- PROJECT GRID -->
+
+<div class="portfolio-grid-new">
+
+    {% for project in projects %}
+
+    <article
+        class="portfolio-project {% if loop.first %}portfolio-featured{% endif %}"
+        data-category="{{ project.category|lower }}"
+    >
+
+        <div class="project-media">
+
+            {% if project.image %}
+
+                <img
+                    src="{{ url_for('static', filename='uploads/' + project.image) }}"
+                    alt="{{ project.title }}"
+                    loading="lazy"
+                >
+
+            {% else %}
+
+                <div class="project-placeholder">
+                    <span>FANU DESIGNS</span>
+                </div>
+
+            {% endif %}
+
+
+            <span class="project-number">
+                {{ "%02d"|format(loop.index) }}
+            </span>
+
+
+            <div class="project-hover">
+
+                <a
+                    href="{{ url_for(
+                        'main.project_detail',
+                        project_id=project.id
+                    ) }}"
+                    class="project-view"
+                >
+                    View Case Study
+                    <span>↗</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="project-details">
+
+            <div>
+
+                <span class="project-category">
+                    {{ project.category }}
+                </span>
+
+                <h3>
+                    {{ project.title }}
+                </h3>
+
+            </div>
+
+            <p>
+                {{ project.technologies or "Creative & Digital" }}
+            </p>
+
+        </div>
+
+    </article>
+
+    {% else %}
+
+    <div class="portfolio-empty">
+
+        <div class="empty-icon">+</div>
+
+        <h3>Projects are coming soon.</h3>
+
+        <p>
+            New creative and digital projects will appear here.
+        </p>
+
+        <a href="#contact" class="btn btn-primary">
+            Start a Project ↗
+        </a>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+        <div class="portfolio-footer">
+
+            <p>
+                More projects coming soon.
+            </p>
+
+            <a href="#contact" class="text-link">
+                Have a project for me?
+                <span>→</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PROJECT MODAL
+===================================================== -->
+
+<div class="project-modal" id="projectModal">
+
+    <div class="modal-backdrop"></div>
+
+    <div class="project-modal-content">
+
+        <button
+            class="modal-close"
+            id="modalClose"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-image">
+
+            <img
+                id="modalImage"
+                src=""
+                alt="Project preview"
+            >
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <span id="modalCategory">
+                PROJECT
+            </span>
+
+            <h2 id="modalTitle">
+                Project Title
+            </h2>
+
+            <p id="modalDescription">
+                Project description.
+            </p>
+
+
+            <div class="modal-info-grid">
+
+                <div>
+
+                    <small>
+                        CLIENT
+                    </small>
+
+                    <strong id="modalClient">
+                        Client
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        TYPE
+                    </small>
+
+                    <strong id="modalType">
+                        Project
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        VALUE
+                    </small>
+
+                    <strong id="modalPrice">
+                        From KSh 25,000
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        TOOLS
+                    </small>
+
+                    <strong id="modalTools">
+                        HTML • CSS • Flask
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <a
+                    href="#contact"
+                    class="btn btn-primary"
+                    id="modalContact"
+                >
+                    Start Similar Project ↗
+                </a>
+
+                <a
+                    href="#"
+                    class="btn btn-outline"
+                    id="modalLive"
+                    target="_blank"
+                >
+                    Live Preview
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PRICING
+===================================================== -->
+
+<section class="pricing-section" id="pricing">
+
+    <div class="container">
+
+        <div class="section-heading centered">
+
+            <p class="section-label">
+                04 — PRICING
+            </p>
+
+            <h2>
+                Simple packages.
+                <span>Powerful results.</span>
+            </h2>
+
+            <p>
+                Flexible starting points for individuals, businesses
+                and growing brands.
+            </p>
+
+        </div>
+
+
+        <div class="pricing-grid">
+
+            <div class="price-card">
+
+                <span class="price-label">STARTER</span>
+
+                <h3>
+                    KSh 5,000
+                    <small>+</small>
+                </h3>
+
+                <p>
+                    Perfect for individuals and small businesses
+                    getting started.
+                </p>
+
+                <ul>
+                    <li>✓ Logo / Graphic Design</li>
+                    <li>✓ Social Media Design</li>
+                    <li>✓ Basic Brand Assets</li>
+                    <li>✓ 2 Revisions</li>
+                </ul>
+
+                <a href="#contact" class="price-btn">
+                    Choose Starter
+                </a>
+
+            </div>
+
+
+            <div class="price-card popular">
+
+                <div class="popular-tag">
+                    MOST POPULAR
+                </div>
+
+                <span class="price-label">
+                    PROFESSIONAL
+                </span>
+
+                <h3>
+                    KSh 25,000
+                    <small>+</small>
+                </h3>
+
+                <p>
+                    For established businesses that need a strong
+                    professional presence.
+                </p>
+
+                <ul>
+                    <li>✓ Professional Website</li>
+                    <li>✓ Branding Assets</li>
+                    <li>✓ UI / UX Design</li>
+                    <li>✓ Mobile Responsive</li>
+                    <li>✓ Multiple Revisions</li>
+                </ul>
+
+                <a href="#contact" class="price-btn">
+                    Choose Professional
+                </a>
+
+            </div>
+
+
+            <div class="price-card">
+
+                <span class="price-label">PREMIUM</span>
+
+                <h3>
+                    KSh 60,000
+                    <small>+</small>
+                </h3>
+
+                <p>
+                    Complete digital solutions for ambitious
+                    businesses and organizations.
+                </p>
+
+                <ul>
+                    <li>✓ Custom Web Application</li>
+                    <li>✓ Premium Branding</li>
+                    <li>✓ Advanced UI / UX</li>
+                    <li>✓ Database Integration</li>
+                    <li>✓ Admin Dashboard</li>
+                </ul>
+
+                <a href="#contact" class="price-btn">
+                    Choose Premium
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TESTIMONIALS
+===================================================== -->
+
+<section
+    class="testimonials-section"
+    id="testimonials"
+>
+
+    <div class="section-heading">
+
+        <span class="section-eyebrow">
+            CLIENT LOVE
+        </span>
+
+        <h2>
+            What My Clients Say
+        </h2>
+
+        <p>
+            Real feedback from clients who trusted
+            Fanu Designs with their ideas, brands
+            and digital experiences.
+        </p>
+
+    </div>
+
+
+    {% if testimonials %}
+
+    <div class="public-testimonials-grid">
+
+        {% for testimonial in testimonials %}
+
+        <article class="public-testimonial-card">
+
+            <div class="public-testimonial-stars">
+
+                {% for i in range(5) %}
+
+                    {% if i < testimonial.rating %}
+
+                        <span class="active">★</span>
+
+                    {% else %}
+
+                        <span>★</span>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+
+            <div class="public-testimonial-quote">
+                “
+            </div>
+
+
+            <p class="public-testimonial-message">
+                {{ testimonial.message }}
+            </p>
+
+
+            <div class="public-testimonial-client">
+
+                {% if testimonial.photo %}
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='uploads/testimonials/' ~ testimonial.photo
+                    ) }}"
+                    alt="{{ testimonial.client_name }}"
+                >
+
+                {% else %}
+
+                <div class="public-testimonial-avatar">
+
+                    {{ testimonial.client_name[0]|upper }}
+
+                </div>
+
+                {% endif %}
+
+
+                <div>
+
+                    <h3>
+                        {{ testimonial.client_name }}
+                    </h3>
+
+
+                    {% if testimonial.position %}
+
+                    <span>
+                        {{ testimonial.position }}
+                    </span>
+
+                    {% endif %}
+
+
+                    {% if testimonial.company %}
+
+                    <small>
+                        {{ testimonial.company }}
+                    </small>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="public-testimonials-empty">
+
+        <span>
+            ★
+        </span>
+
+        <h3>
+            Client testimonials coming soon.
+        </h3>
+
+        <p>
+            Great experiences from our clients will
+            appear here.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+<!-- =====================================================
+     CONTACT / PROJECT ENQUIRY
+===================================================== -->
+
+<section class="contact-section" id="contact">
+
+    <div class="container">
+
+        <div class="contact-heading">
+
+            <p class="section-label">
+                06 — START A PROJECT
+            </p>
+
+            <h2>
+                Let's turn your
+                <span>idea into reality.</span>
+            </h2>
+
+            <p>
+                Tell me what you're building, what you need and
+                where you want to go. I'll get back to you as soon
+                as possible.
+            </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+
+            <!-- =========================================
+                 CONTACT INFORMATION
+            ========================================== -->
+
+            <div class="contact-info">
+
+                <div class="contact-info-label">
+                    LET'S TALK
+                </div>
+
+                <h3>
+                    Have a project
+                    <span>in mind?</span>
+                </h3>
+
+                <p>
+                    Whether you need a logo, complete branding,
+                    a website, UI/UX design or a custom application,
+                    send me the details and let's discuss it.
+                </p>
+
+
+                <div class="contact-methods">
+
+                    <a
+                        href="https://wa.me/254740704681"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="contact-method"
+                    >
+
+                        <div class="contact-method-icon">
+                            W
+                        </div>
+
+                        <div>
+                            <small>WHATSAPP</small>
+                            <strong>+254 740 704 681</strong>
+                        </div>
+
+                        <span>↗</span>
+
+                    </a>
+
+
+                    <a
+                        href="mailto:fanuelkaasewe@gmail.com"
+                        class="contact-method"
+                    >
+
+                        <div class="contact-method-icon">
+                            @
+                        </div>
+
+                        <div>
+                            <small>EMAIL</small>
+                            <strong>
+                                fanuelkaasewe@gmail.com
+                            </strong>
+                        </div>
+
+                        <span>↗</span>
+
+                    </a>
+
+
+                    <div class="contact-method">
+
+                        <div class="contact-method-icon">
+                            KE
+                        </div>
+
+                        <div>
+                            <small>LOCATION</small>
+                            <strong>Kenya</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-note">
+
+                    <span>✦</span>
+
+                    <p>
+                        Usually responds within
+                        <strong>24 hours.</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 ENQUIRY FORM
+            ========================================== -->
+
+            <div class="contact-form-wrapper">
+
+                {% with messages = get_flashed_messages(
+                    with_categories=true
+                ) %}
+
+                    {% if messages %}
+
+                        {% for category, message in messages %}
+
+                            <div class="contact-alert {{ category }}">
+                                {{ message }}
+                            </div>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                {% endwith %}
+
+
+                <form
+                    action="{{ url_for('main.contact') }}"
+                    method="POST"
+                    class="contact-form"
+                >
+
+                    <input
+                            type="hidden"
+                            name="csrf_token"
+                            value="{{ csrf_token() }}"
+                        >
+
+
+                    <div class="form-row">
+
+                        <div class="contact-field">
+
+                            <label for="name">
+                                YOUR NAME *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Fanu Designs"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="contact-field">
+
+                            <label for="email">
+                                EMAIL ADDRESS *
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="fanuelkaasewe@gmail.com"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+                        <div class="contact-field">
+
+                            <label for="phone">
+                                PHONE / WHATSAPP
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="+254 7XX XXX XXX"
+                            >
+
+                        </div>
+
+
+                        <div class="contact-field">
+
+                            <label for="service">
+                                SERVICE *
+                            </label>
+
+                            <select
+                                id="service"
+                                name="service"
+                                required
+                            >
+
+                                <option value="">
+                                    Select a service
+                                </option>
+
+                                <option value="Graphic Design">
+                                    Graphic Design
+                                </option>
+
+                                <option value="Logo Design">
+                                    Logo Design
+                                </option>
+
+                                <option value="Branding">
+                                    Branding
+                                </option>
+
+                                <option value="Website Design">
+                                    Website Design & Developement
+                                </option>
+
+                                <option value="E-commerce">
+                                    E-commerce
+                                </option>
+
+                                <option value="UI / UX Design">
+                                    System Developement
+                                </option>
+
+                                <option value="Application Development">
+                                    Application Development
+                                </option>
+
+                                <option value="Printing & Branding">
+                                    Printing & Branding
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="contact-field">
+
+                        <label for="budget">
+                            ESTIMATED BUDGET
+                        </label>
+
+                        <select
+                            id="budget"
+                            name="budget"
+                        >
+
+                            <option value="">
+                                Select your budget
+                            </option>
+
+                            <option value="Below KSh 5,000">
+                                Below KSh 5,000
+                            </option>
+
+                            <option value="KSh 5,000 - 25,000">
+                                KSh 5,000 – 25,000
+                            </option>
+
+                            <option value="KSh 25,000 - 60,000">
+                                KSh 25,000 – 60,000
+                            </option>
+
+                            <option value="KSh 60,000 - 100,000">
+                                KSh 60,000 – 100,000
+                            </option>
+
+                            <option value="KSh 100,000+">
+                                KSh 100,000+
+                            </option>
+
+                            <option value="Not sure yet">
+                                Not sure yet
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="contact-field">
+
+                        <label for="message">
+                            TELL ME ABOUT YOUR PROJECT *
+                        </label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="7"
+                            placeholder="Tell me about your idea, what you need, your goals and any important details..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <button
+                        type="submit"
+                        class="contact-submit"
+                    >
+
+                        <span>
+                            Send Project Enquiry
+                        </span>
+
+                        <strong>
+                            ↗
+                        </strong>
+
+                    </button>
+
+
+                    <p class="form-disclaimer">
+                        By submitting this form, you agree that
+                        Fanu Designs may contact you regarding your
+                        project enquiry.
+                    </p>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+
+                <a href="#home" class="logo">
+                    FANU<span>DESIGNS</span>
+                </a>
+
+                <p>
+                    Creative design, branding and digital development
+                    for businesses ready to stand out.
+                </p>
+
+                <div class="social-links">
+
+                    <a href="#" aria-label="Facebook">f</a>
+                    <a href="#" aria-label="Instagram">◎</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="WhatsApp">W</a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Explore</h4>
+
+                <a href="#home">Home</a>
+                <a href="{{ url_for('main.about') }}">About</a>
+                <a href="{{ url_for('main.services') }}">Services</a>
+                <a href="{{ url_for('main.portfolio') }}">Portfolio</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Services</h4>
+
+                <a href="#services">Graphic Design</a>
+                <a href="#services">Branding</a>
+                <a href="#services">Web Design</a>
+                <a href="#services">UI / UX</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Let's Talk</h4>
+
+                <a href="mailto:fanuelkaasewe@gmail.com">
+                    fanuelkaasewe@gmail.com
+                </a>
+
+                <a href="tel:+254740704681">
+                    +254 740 704 681
+                </a>
+
+                <span>
+                    Kenya
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 Fanu Designs. All rights reserved.
+            </span>
+
+            <span>
+                We Design. We Build. We Brand.
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- FLOATING WHATSAPP -->
+
+<a
+    href="https://wa.me/254740704681"
+    target="_blank"
+    class="whatsapp-float"
+    aria-label="Chat on WhatsApp"
+>
+    W
+</a>
+
+{% endblock %}

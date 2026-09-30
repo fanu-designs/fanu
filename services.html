@@ -1,0 +1,335 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+Fanu Designs — Services
+{% endblock %}
+
+{% block content %}
+
+<div class="services-page">
+
+```
+<!-- HEADER -->
+
+<div class="services-header">
+
+    <div>
+
+        <span class="page-eyebrow">
+            SERVICE MANAGEMENT
+        </span>
+
+        <h1>
+            Services
+        </h1>
+
+        <p>
+            Manage the creative and digital services offered by Fanu Designs.
+        </p>
+
+    </div>
+
+    <a
+        href="{{ url_for('admin.add_service') }}"
+        class="add-service-btn"
+    >
+        <span>+</span>
+        Add Service
+    </a>
+
+</div>
+
+
+<!-- STATISTICS -->
+
+<div class="service-stats">
+
+    <div class="service-stat-card">
+
+        <div class="service-stat-icon">
+            ◈
+        </div>
+
+        <div>
+
+            <span>Total Services</span>
+
+            <strong>
+                {{ total_services }}
+            </strong>
+
+            <small>
+                Available services
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="service-stat-card">
+
+        <div class="service-stat-icon featured">
+            ★
+        </div>
+
+        <div>
+
+            <span>Featured</span>
+
+            <strong>
+                {{ featured_services }}
+            </strong>
+
+            <small>
+                Highlighted services
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="services-toolbar">
+
+    <div class="service-search">
+
+        <span>
+            ⌕
+        </span>
+
+        <input
+            type="text"
+            id="serviceSearch"
+            placeholder="Search services..."
+            onkeyup="searchServices()"
+        >
+
+    </div>
+
+</div>
+
+
+<!-- SERVICES -->
+
+{% if services %}
+
+<div
+    class="services-management-grid"
+    id="servicesGrid"
+>
+
+    {% for service in services %}
+
+    <div
+        class="service-management-card"
+        data-search="{{ service.name }} {{ service.category }} {{ service.description }}"
+    >
+
+        <div class="service-card-top">
+
+            <div class="service-icon-box">
+
+                {% if service.icon %}
+                    {{ service.icon }}
+                {% else %}
+                    ✦
+                {% endif %}
+
+            </div>
+
+            {% if service.featured %}
+
+            <span class="featured-service-badge">
+                ★ Featured
+            </span>
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="service-card-body">
+
+            <span class="service-category">
+                {{ service.category }}
+            </span>
+
+            <h2>
+                {{ service.name }}
+            </h2>
+
+            <p>
+                {{ service.description }}
+            </p>
+
+        </div>
+
+
+        <div class="service-card-footer">
+
+            <div class="service-price">
+
+                <small>
+                    STARTING FROM
+                </small>
+
+                <strong>
+                    {{ service.price or "Request Quote" }}
+                </strong>
+
+            </div>
+
+
+            <div class="service-card-actions">
+
+                <a
+                    href="{{ url_for('admin.edit_service', service_id=service.id) }}"
+                    class="service-edit-btn"
+                >
+                    Edit
+                </a>
+
+
+                <form
+                    method="POST"
+                    action="{{ url_for('admin.delete_service', service_id=service.id) }}"
+                    onsubmit="return confirm('Delete this service?');"
+                >
+
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        value="{{ csrf_token() }}"
+                    >
+
+                    <button
+                        type="submit"
+                        class="service-delete-btn"
+                    >
+                        Delete
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+<div
+    id="noServiceResults"
+    class="no-service-results"
+    style="display:none;"
+>
+
+    <div>⌕</div>
+
+    <h3>
+        No services found
+    </h3>
+
+    <p>
+        Try a different search term.
+    </p>
+
+</div>
+
+
+{% else %}
+
+<div class="empty-services">
+
+    <div class="empty-service-icon">
+        ✦
+    </div>
+
+    <h2>
+        No services yet
+    </h2>
+
+    <p>
+        Start building your service catalogue by adding your first service.
+    </p>
+
+    <a
+        href="{{ url_for('admin.add_service') }}"
+        class="add-service-btn"
+    >
+        <span>+</span>
+        Add Your First Service
+    </a>
+
+</div>
+
+{% endif %}
+```
+
+</div>
+
+<script>
+
+function searchServices() {
+
+    const input =
+        document.getElementById("serviceSearch");
+
+    const search =
+        input.value.toLowerCase().trim();
+
+    const cards =
+        document.querySelectorAll(
+            ".service-management-card"
+        );
+
+    let visible = 0;
+
+    cards.forEach(function(card) {
+
+        const text =
+            card.dataset.search.toLowerCase();
+
+        if (text.includes(search)) {
+
+            card.style.display = "";
+
+            visible++;
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+
+    const empty =
+        document.getElementById(
+            "noServiceResults"
+        );
+
+    if (empty) {
+
+        empty.style.display =
+            visible === 0
+            ? "block"
+            : "none";
+
+    }
+
+}
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+Fanu Designs — Page Views
+{% endblock %}
+
+{% block content %}
+
+<div class="admin-page">
+
+    <div class="admin-page-header">
+
+        <div>
+            <p class="admin-page-label">
+                ANALYTICS
+            </p>
+
+            <h1>
+                Page Views
+            </h1>
+
+            <p>
+                See which pages visitors are viewing.
+            </p>
+        </div>
+
+        <a
+            href="{{ url_for('admin.dashboard') }}"
+            class="admin-view-site"
+        >
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="admin-panel">
+
+        <div class="panel-header">
+
+            <div>
+                <span>WEBSITE ACTIVITY</span>
+
+                <h3>
+                    Page Performance
+                </h3>
+            </div>
+
+        </div>
+
+
+        <div class="analytics-placeholder">
+
+            <div class="analytics-placeholder-icon">
+                ⌁
+            </div>
+
+            <h3>
+                Page View Analytics
+            </h3>
+
+            <p>
+                Page view statistics will appear here once
+                visitor tracking data is available.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

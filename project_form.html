@@ -1,0 +1,275 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+{{ page_title }} — Fanu Designs
+{% endblock %}
+
+
+{% block content %}
+
+<div class="admin-dashboard">
+
+    <aside class="admin-sidebar">
+
+        <div class="admin-logo">
+            <div>FANU</div>
+            <span>DESIGNS</span>
+        </div>
+
+        <div class="admin-section-label">
+            MANAGEMENT
+        </div>
+
+        <nav class="admin-nav">
+
+            <a
+                href="{{ url_for('admin.dashboard') }}"
+                class="admin-nav-item"
+            >
+                <span class="nav-icon">⌂</span>
+                Dashboard
+            </a>
+
+            <a
+                href="{{ url_for('admin.portfolio') }}"
+                class="admin-nav-item active"
+            >
+                <span class="nav-icon">▦</span>
+                Portfolio
+            </a>
+
+        </nav>
+
+        <div class="admin-sidebar-bottom">
+
+            <a
+                href="{{ url_for('admin.logout') }}"
+                class="admin-nav-item logout"
+            >
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="admin-main">
+
+        <header class="admin-topbar">
+
+            <div>
+
+                <p class="admin-page-label">
+                    PORTFOLIO MANAGEMENT
+                </p>
+
+                <h1>
+                    {{ page_title }}
+                </h1>
+
+            </div>
+
+        </header>
+
+
+        <section class="project-editor">
+
+            <div class="project-editor-heading">
+
+                <span>
+                    PROJECT DETAILS
+                </span>
+
+                <h2>
+                    Tell the story behind the work.
+                </h2>
+
+                <p>
+                    Add the information visitors will see
+                    when exploring your portfolio.
+                </p>
+
+            </div>
+
+
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+                class="project-form"
+            >
+
+                {{ form.hidden_tag() }}
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group form-wide">
+
+                        <label>
+                            Project Title
+                        </label>
+
+                        {{ form.title(
+                            placeholder="e.g. Bigminds Creates"
+                        ) }}
+
+                        {% for error in form.title.errors %}
+                            <small class="form-error">
+                                {{ error }}
+                            </small>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Category
+                        </label>
+
+                        {{ form.category(
+                            placeholder="Branding / Web / Applications"
+                        ) }}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Project Value
+                        </label>
+
+                        {{ form.price(
+                            placeholder="e.g. KSh 25,000"
+                        ) }}
+
+                    </div>
+
+
+                    <div class="form-group form-wide">
+
+                        <label>
+                            Description
+                        </label>
+
+                        {{ form.description(
+                            rows="7",
+                            placeholder="Describe the project, challenge, solution and result..."
+                        ) }}
+
+                    </div>
+
+
+                    <div class="form-group form-wide">
+
+                        <label>
+                            Technologies & Tools
+                        </label>
+
+                        {{ form.technologies(
+                            placeholder="HTML · CSS · JavaScript · Flask · Photoshop"
+                        ) }}
+
+                    </div>
+
+
+                    <div class="form-group form-wide">
+
+                        <label>
+                            Live Demo URL
+                        </label>
+
+                        {{ form.live_url(
+                            placeholder="https://example.com"
+                        ) }}
+
+                    </div>
+
+
+                    <div class="form-group form-wide">
+
+                        <label>
+                            Project Image
+                        </label>
+
+                        <div class="upload-box">
+
+                            {{ form.image(
+                                accept=".jpg,.jpeg,.png,.webp"
+                            ) }}
+
+                            <span>
+                                JPG, PNG or WEBP
+                            </span>
+
+                        </div>
+
+                        {% if project and project.image %}
+
+                            <div class="current-image">
+
+                                <p>
+                                    Current image
+                                </p>
+
+                                <img
+                                    src="{{ url_for(
+                                        'static',
+                                        filename='uploads/' + project.image
+                                    ) }}"
+                                    alt="{{ project.title }}"
+                                >
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-featured">
+
+                        {{ form.featured() }}
+
+                        <label for="featured">
+                            Feature this project on the website
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-form-actions">
+
+                    <a
+                        href="{{ url_for('admin.portfolio') }}"
+                        class="form-cancel"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="admin-view-site"
+                    >
+                        {{ submit_text }}
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+{% endblock %}

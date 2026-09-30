@@ -1,0 +1,715 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+Fanu Designs — Visitor Analytics
+{% endblock %}
+
+{% block content %}
+
+<div class="admin-page">
+
+<!-- HEADER -->
+
+<div class="admin-page-header">
+
+    <div>
+
+        <p class="admin-page-label">
+            WEBSITE PERFORMANCE
+        </p>
+
+        <h1>
+            Visitor Analytics
+        </h1>
+
+        <p>
+            Monitor website traffic, visitors and
+            audience behaviour.
+        </p>
+
+    </div>
+
+
+    <a
+        href="{{ url_for('admin.dashboard') }}"
+        class="admin-view-site"
+    >
+        ← Dashboard
+    </a>
+
+</div>
+
+
+<!-- MAIN STATISTICS -->
+
+<section class="admin-stats">
+
+
+    <div class="admin-stat-card">
+
+        <div class="stat-card-top">
+
+            <span>
+                UNIQUE VISITORS
+            </span>
+
+            <div class="stat-icon">
+                ◉
+            </div>
+
+        </div>
+
+        <strong>
+            {{ unique_visitors }}
+        </strong>
+
+        <p>
+            Recorded sessions
+        </p>
+
+    </div>
+
+
+    <div class="admin-stat-card">
+
+        <div class="stat-card-top">
+
+            <span>
+                PAGE VIEWS
+            </span>
+
+            <div class="stat-icon">
+                ⌁
+            </div>
+
+        </div>
+
+        <strong>
+            {{ total_page_views }}
+        </strong>
+
+        <p>
+            Total recorded views
+        </p>
+
+    </div>
+
+
+    <div class="admin-stat-card">
+
+        <div class="stat-card-top">
+
+            <span>
+                TODAY
+            </span>
+
+            <div class="stat-icon">
+                ◒
+            </div>
+
+        </div>
+
+        <strong>
+            {{ today_unique_visitors }}
+        </strong>
+
+        <p>
+            Unique visitors today
+        </p>
+
+    </div>
+
+
+    <div class="admin-stat-card">
+
+        <div class="stat-card-top">
+
+            <span>
+                LAST 7 DAYS
+            </span>
+
+            <div class="stat-icon">
+                ↗
+            </div>
+
+        </div>
+
+        <strong>
+            {{ week_unique_visitors }}
+        </strong>
+
+        <p>
+            Unique visitors
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- TRAFFIC SUMMARY -->
+
+<section class="analytics-grid">
+
+
+    <div class="admin-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <span>
+                    TODAY
+                </span>
+
+                <h3>
+                    Today's Activity
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="analytics-summary">
+
+            <div>
+
+                <span>
+                    Visitors
+                </span>
+
+                <strong>
+                    {{ today_unique_visitors }}
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Page Views
+                </span>
+
+                <strong>
+                    {{ today_page_views }}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="admin-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <span>
+                    LAST 7 DAYS
+                </span>
+
+                <h3>
+                    Weekly Activity
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="analytics-summary">
+
+            <div>
+
+                <span>
+                    Visitors
+                </span>
+
+                <strong>
+                    {{ week_unique_visitors }}
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Page Views
+                </span>
+
+                <strong>
+                    {{ week_page_views }}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- DEVICE STATISTICS -->
+
+<section class="admin-panel">
+
+    <div class="panel-header">
+
+        <div>
+
+            <span>
+                AUDIENCE
+            </span>
+
+            <h3>
+                Devices
+            </h3>
+
+        </div>
+
+    </div>
+
+
+    <div class="analytics-device-grid">
+
+
+        <div class="analytics-device">
+
+            <span class="device-icon">
+                ▣
+            </span>
+
+            <div>
+
+                <strong>
+                    {{ desktop_visitors }}
+                </strong>
+
+                <span>
+                    Desktop
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="analytics-device">
+
+            <span class="device-icon">
+                ▯
+            </span>
+
+            <div>
+
+                <strong>
+                    {{ mobile_visitors }}
+                </strong>
+
+                <span>
+                    Mobile
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="analytics-device">
+
+            <span class="device-icon">
+                ▤
+            </span>
+
+            <div>
+
+                <strong>
+                    {{ tablet_visitors }}
+                </strong>
+
+                <span>
+                    Tablet
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- BROWSER / OS -->
+
+<section class="analytics-grid">
+
+
+    <!-- BROWSERS -->
+
+    <div class="admin-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <span>
+                    TECHNOLOGY
+                </span>
+
+                <h3>
+                    Browsers
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="analytics-list">
+
+            {% for browser, count in browser_data %}
+
+            <div class="analytics-list-row">
+
+                <span>
+                    {{ browser or "Unknown" }}
+                </span>
+
+                <strong>
+                    {{ count }}
+                </strong>
+
+            </div>
+
+            {% else %}
+
+            <div class="admin-empty">
+
+                <p>
+                    No browser data yet.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+
+    <!-- OPERATING SYSTEM -->
+
+    <div class="admin-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <span>
+                    TECHNOLOGY
+                </span>
+
+                <h3>
+                    Operating Systems
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="analytics-list">
+
+            {% for operating_system, count in os_data %}
+
+            <div class="analytics-list-row">
+
+                <span>
+                    {{ operating_system or "Unknown" }}
+                </span>
+
+                <strong>
+                    {{ count }}
+                </strong>
+
+            </div>
+
+            {% else %}
+
+            <div class="admin-empty">
+
+                <p>
+                    No operating system data yet.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- TOP PAGES / COUNTRIES -->
+
+<section class="analytics-grid">
+
+
+    <!-- TOP PAGES -->
+
+    <div class="admin-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <span>
+                    CONTENT
+                </span>
+
+                <h3>
+                    Top Pages
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="analytics-list">
+
+            {% for page, count in page_data %}
+
+            <div class="analytics-list-row">
+
+                <span>
+                    {{ page or "/" }}
+                </span>
+
+                <strong>
+                    {{ count }}
+                </strong>
+
+            </div>
+
+            {% else %}
+
+            <div class="admin-empty">
+
+                <p>
+                    No page view data yet.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+
+    <!-- COUNTRIES -->
+
+    <div class="admin-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <span>
+                    AUDIENCE
+                </span>
+
+                <h3>
+                    Countries
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="analytics-list">
+
+            {% for country, count in country_data %}
+
+            <div class="analytics-list-row">
+
+                <span>
+                    {{ country or "Unknown" }}
+                </span>
+
+                <strong>
+                    {{ count }}
+                </strong>
+
+            </div>
+
+            {% else %}
+
+            <div class="admin-empty">
+
+                <p>
+                    No country data yet.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- RECENT VISITORS -->
+
+<section class="admin-panel">
+
+    <div class="panel-header">
+
+        <div>
+
+            <span>
+                LIVE DATA
+            </span>
+
+            <h3>
+                Recent Visitors
+            </h3>
+
+        </div>
+
+    </div>
+
+
+    <div class="analytics-table-wrapper">
+
+        <table class="analytics-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Page
+                    </th>
+
+                    <th>
+                        Device
+                    </th>
+
+                    <th>
+                        Browser
+                    </th>
+
+                    <th>
+                        Operating System
+                    </th>
+
+                    <th>
+                        Country
+                    </th>
+
+                    <th>
+                        Time
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for visitor in recent_visitors %}
+
+                <tr>
+
+                    <td>
+                        {{ visitor.page or "/" }}
+                    </td>
+
+                    <td>
+                        {{ visitor.device or "Unknown" }}
+                    </td>
+
+                    <td>
+                        {{ visitor.browser or "Unknown" }}
+                    </td>
+
+                    <td>
+                        {{ visitor.operating_system or "Unknown" }}
+                    </td>
+
+                    <td>
+                        {{ visitor.country or "Unknown" }}
+                    </td>
+
+                    <td>
+
+                        {% if visitor.visited_at %}
+
+                            {{ visitor.visited_at.strftime(
+                                "%d %b %H:%M"
+                            ) }}
+
+                        {% else %}
+
+                            —
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+
+                    <td
+                        colspan="6"
+                        class="analytics-no-data"
+                    >
+                        No visitor records yet.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="{{ project.title }} — Fanu Designs project case study."
+    >
+
+    <title>
+        {{ project.title }} | Fanu Designs
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body class="project-detail-page">
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="case-navbar">
+
+    <div class="case-nav-container">
+
+        <a
+            href="{{ url_for('main.index') }}"
+            class="case-logo"
+        >
+            FANU<span>.</span>
+        </a>
+
+
+        <nav class="case-nav-links">
+
+            <a href="{{ url_for('main.index') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('main.services') }}">
+                Services
+            </a>
+
+            <a
+                href="{{ url_for('main.portfolio') }}"
+                class="active"
+            >
+                Portfolio
+            </a>
+
+            <a href="{{ url_for('main.about') }}">
+                About
+            </a>
+
+            <a href="{{ url_for('main.index') }}#pricing">
+                Pricing
+            </a>
+
+        </nav>
+
+
+        <a
+            href="{{ url_for('main.index') }}#contact"
+            class="case-nav-cta"
+        >
+            Start a Project
+            <span>↗</span>
+        </a>
+
+
+        <button
+            class="case-menu-toggle"
+            aria-label="Toggle navigation"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     CASE STUDY HERO
+========================================================= -->
+
+<main>
+
+<section class="case-hero">
+
+    <div class="case-hero-container">
+
+        <div class="case-hero-content">
+
+            <span class="case-eyebrow">
+                {{ project.category }}
+            </span>
+
+
+            <h1>
+                {{ project.title }}
+            </h1>
+
+
+            <p class="case-hero-description">
+                {{ project.description }}
+            </p>
+
+
+            <div class="case-meta">
+
+                {% if project.technologies %}
+
+                <div class="case-meta-item">
+
+                    <span>
+                        Technologies
+                    </span>
+
+                    <strong>
+                        {{ project.technologies }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if project.price %}
+
+                <div class="case-meta-item">
+
+                    <span>
+                        Project Value
+                    </span>
+
+                    <strong>
+                        {{ project.price }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            {% if project.live_url %}
+
+            <a
+                href="{{ project.live_url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="case-live-button"
+            >
+                Visit Live Project
+                <span>↗</span>
+            </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PROJECT IMAGE
+========================================================= -->
+
+<section class="case-showcase">
+
+    <div class="case-showcase-container">
+
+        <div class="case-image-wrapper">
+
+            {% if project.image %}
+
+            <img
+                src="{{ url_for('static', filename='uploads/' + project.image) }}"
+                alt="{{ project.title }}"
+            >
+
+            {% else %}
+
+            <div class="case-image-placeholder">
+
+                <span>
+                    FANU DESIGNS
+                </span>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PROJECT INFORMATION
+========================================================= -->
+
+<section class="case-information">
+
+    <div class="case-information-container">
+
+
+        <div class="case-info-intro">
+
+            <span class="case-section-label">
+                The Project
+            </span>
+
+            <h2>
+                Turning an idea into something
+                <span>remarkable.</span>
+            </h2>
+
+        </div>
+
+
+        <div class="case-info-content">
+
+            <p>
+                {{ project.description }}
+            </p>
+
+
+            {% if project.technologies %}
+
+            <div class="case-technologies">
+
+                <span class="case-section-label">
+                    Built With
+                </span>
+
+                <div class="case-tech-list">
+
+                    {% for technology in project.technologies.split(',') %}
+
+                    <span class="case-tech">
+                        {{ technology.strip() }}
+                    </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     NEXT PROJECT / CTA
+========================================================= -->
+
+<section class="case-bottom-cta">
+
+    <div class="case-bottom-container">
+
+        <span class="case-section-label">
+            Have an idea?
+        </span>
+
+
+        <h2>
+            Let's build something
+            <span>exceptional.</span>
+        </h2>
+
+
+        <p>
+            Tell us what you have in mind and
+            let's turn your idea into reality.
+        </p>
+
+
+        <a
+            href="{{ url_for('main.index') }}#contact"
+            class="case-bottom-button"
+        >
+            Start Your Project
+            <span>↗</span>
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="case-footer">
+
+    <div class="case-footer-container">
+
+
+        <div class="case-footer-brand">
+
+            <a
+                href="{{ url_for('main.index') }}"
+                class="case-footer-logo"
+            >
+                FANU<span>.</span>
+            </a>
+
+            <p>
+                We Design. We Build. We Brand.
+            </p>
+
+        </div>
+
+
+        <div class="case-footer-column">
+
+            <h4>
+                Explore
+            </h4>
+
+            <a href="{{ url_for('main.index') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('main.about') }}">
+                About
+            </a>
+
+            <a href="{{ url_for('main.services') }}">
+                Services
+            </a>
+
+            <a href="{{ url_for('main.portfolio') }}">
+                Portfolio
+            </a>
+
+        </div>
+
+
+        <div class="case-footer-column">
+
+            <h4>
+                Services
+            </h4>
+
+            <a href="{{ url_for('main.index') }}#services">
+                Graphic Design
+            </a>
+
+            <a href="{{ url_for('main.index') }}#services">
+                Web Development
+            </a>
+
+            <a href="{{ url_for('main.index') }}#services">
+                Management Systems
+            </a>
+
+            <a href="{{ url_for('main.index') }}#services">
+                Branding
+            </a>
+
+        </div>
+
+
+        <div class="case-footer-column">
+
+            <h4>
+                Let's Talk
+            </h4>
+
+            <a href="{{ url_for('main.index') }}#contact">
+                Start a Project
+            </a>
+
+            <a href="mailto:hello@fanudesigns.com">
+                hello@fanudesigns.com
+            </a>
+
+            <a href="tel:+254700000000">
+                +254 700 000 000
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="case-footer-bottom">
+
+        <p>
+            © 2026 Fanu Designs.
+            All rights reserved.
+        </p>
+
+        <span>
+            Crafted with purpose.
+        </span>
+
+    </div>
+
+</footer>
+
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const menuToggle =
+        document.querySelector(".case-menu-toggle");
+
+    const nav =
+        document.querySelector(".case-nav-links");
+
+
+    if (menuToggle && nav) {
+
+        menuToggle.addEventListener("click", function () {
+
+            nav.classList.toggle("open");
+
+            menuToggle.classList.toggle("open");
+
+        });
+
+    }
+
+
+    const navbar =
+        document.querySelector(".case-navbar");
+
+
+    window.addEventListener("scroll", function () {
+
+        if (window.scrollY > 40) {
+
+            navbar.classList.add("scrolled");
+
+        } else {
+
+            navbar.classList.remove("scrolled");
+
+        }
+
+    });
+
+});
+
+</script>
+
+
+</body>
+
+</html>

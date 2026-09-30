@@ -1,0 +1,424 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+Fanu Designs — Testimonials
+{% endblock %}
+
+{% block content %}
+
+<div class="testimonials-page">
+
+    <!-- PAGE HEADER -->
+    <div class="testimonials-header">
+
+        <div>
+            <span class="page-eyebrow">
+                CLIENT MANAGEMENT
+            </span>
+
+            <h1>
+                Testimonials
+            </h1>
+
+            <p>
+                Manage client reviews, ratings and testimonials
+                displayed across your Fanu Designs website.
+            </p>
+        </div>
+
+        <a
+            href="{{ url_for('admin.add_testimonial') }}"
+            class="add-testimonial-btn"
+        >
+            <span>+</span>
+            Add Testimonial
+        </a>
+
+    </div>
+
+
+    <!-- STATISTICS -->
+    <div class="testimonial-stats">
+
+        <div class="testimonial-stat-card">
+
+            <div class="testimonial-stat-icon">
+                ★
+            </div>
+
+            <div>
+                <span>Total Testimonials</span>
+
+                <strong>
+                    {{ total_testimonials }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="testimonial-stat-card">
+
+            <div class="testimonial-stat-icon">
+                ✓
+            </div>
+
+            <div>
+                <span>Featured</span>
+
+                <strong>
+                    {{ featured_testimonials }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="testimonial-stat-card">
+
+            <div class="testimonial-stat-icon">
+                ♥
+            </div>
+
+            <div>
+                <span>Average Rating</span>
+
+                <strong>
+
+                    {% if total_testimonials > 0 %}
+
+                        {{
+                            (
+                                testimonials
+                                |map(attribute="rating")
+                                |sum
+                            )
+                            /
+                            total_testimonials
+                        |round(1)
+                        }}
+
+                    {% else %}
+
+                        0
+
+                    {% endif %}
+
+                    <small>/ 5</small>
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+    <div class="testimonials-toolbar">
+
+        <div class="testimonial-search">
+
+            <span>⌕</span>
+
+            <input
+                type="text"
+                id="testimonialSearch"
+                placeholder="Search testimonials..."
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- TESTIMONIALS -->
+    {% if testimonials %}
+
+    <div
+        class="testimonials-management-grid"
+        id="testimonialsGrid"
+    >
+
+        {% for testimonial in testimonials %}
+
+        <article
+            class="testimonial-management-card"
+            data-search="
+                {{ testimonial.client_name }}
+                {{ testimonial.company or '' }}
+                {{ testimonial.position or '' }}
+                {{ testimonial.message }}
+            "
+        >
+
+            <!-- TOP -->
+            <div class="testimonial-card-top">
+
+                <div class="testimonial-client">
+
+                    {% if testimonial.photo %}
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='uploads/testimonials/' ~ testimonial.photo
+                        ) }}"
+                        alt="{{ testimonial.client_name }}"
+                    >
+
+                    {% else %}
+
+                    <div class="testimonial-avatar">
+                        {{ testimonial.client_name[0]|upper }}
+                    </div>
+
+                    {% endif %}
+
+                    <div>
+
+                        <h3>
+                            {{ testimonial.client_name }}
+                        </h3>
+
+                        {% if testimonial.position %}
+
+                        <span>
+                            {{ testimonial.position }}
+                        </span>
+
+                        {% endif %}
+
+                        {% if testimonial.company %}
+
+                        <small>
+                            {{ testimonial.company }}
+                        </small>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                {% if testimonial.featured %}
+
+                <span class="testimonial-featured">
+                    Featured
+                </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- RATING -->
+            <div class="testimonial-rating">
+
+                {% for i in range(5) %}
+
+                    {% if i < testimonial.rating %}
+
+                        <span class="star active">★</span>
+
+                    {% else %}
+
+                        <span class="star">★</span>
+
+                    {% endif %}
+
+                {% endfor %}
+
+                <span class="rating-number">
+                    {{ testimonial.rating }}/5
+                </span>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+            <div class="testimonial-message">
+
+                <span class="quote-mark">
+                    “
+                </span>
+
+                <p>
+                    {{ testimonial.message }}
+                </p>
+
+            </div>
+
+
+            <!-- FOOTER -->
+            <div class="testimonial-card-footer">
+
+                <span class="testimonial-date">
+
+                    {{ testimonial.created_at.strftime('%d %b %Y') }}
+
+                </span>
+
+
+                <div class="testimonial-actions">
+
+                    <a
+                        href="{{ url_for(
+                            'admin.edit_testimonial',
+                            testimonial_id=testimonial.id
+                        ) }}"
+                        class="testimonial-edit-btn"
+                    >
+                        Edit
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- NO SEARCH RESULTS -->
+    <div
+        class="testimonial-no-results"
+        id="testimonialNoResults"
+        style="display:none;"
+    >
+
+        <div>
+            ⌕
+        </div>
+
+        <h3>
+            No testimonials found
+        </h3>
+
+        <p>
+            Try a different search term.
+        </p>
+
+    </div>
+
+
+    {% else %}
+
+    <!-- EMPTY STATE -->
+    <div class="testimonials-empty">
+
+        <div class="testimonials-empty-icon">
+            ★
+        </div>
+
+        <h2>
+            No Testimonials Yet
+        </h2>
+
+        <p>
+            Start building social proof by adding your
+            first client testimonial.
+        </p>
+
+        <a
+            href="{{ url_for('admin.add_testimonial') }}"
+            class="add-testimonial-btn"
+        >
+            <span>+</span>
+            Add Your First Testimonial
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const searchInput =
+            document.getElementById(
+                "testimonialSearch"
+            );
+
+        const cards =
+            document.querySelectorAll(
+                ".testimonial-management-card"
+            );
+
+        const noResults =
+            document.getElementById(
+                "testimonialNoResults"
+            );
+
+        if (!searchInput) {
+            return;
+        }
+
+        searchInput.addEventListener(
+            "input",
+            function () {
+
+                const query =
+                    this.value
+                    .toLowerCase()
+                    .trim();
+
+                let visible = 0;
+
+                cards.forEach(
+                    function (card) {
+
+                        const text =
+                            card.dataset.search
+                            .toLowerCase();
+
+                        if (
+                            text.includes(query)
+                        ) {
+
+                            card.style.display =
+                                "";
+
+                            visible++;
+
+                        } else {
+
+                            card.style.display =
+                                "none";
+
+                        }
+
+                    }
+                );
+
+                if (noResults) {
+
+                    noResults.style.display =
+                        visible === 0 &&
+                        query !== ""
+                            ? "block"
+                            : "none";
+
+                }
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+{% endblock %}

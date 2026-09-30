@@ -1,0 +1,346 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+Enquiry #{{ enquiry.id }} | Fanu Designs Admin
+{% endblock %}
+
+{% block content %}
+
+<div class="admin-page">
+
+    <div class="admin-page-header">
+
+        <div>
+
+            <span class="admin-eyebrow">
+                PROJECT ENQUIRY #{{ enquiry.id }}
+            </span>
+
+            <h1>
+                {{ enquiry.name }}
+            </h1>
+
+            <p>
+                Submitted
+                {% if enquiry.created_at %}
+                    {{ enquiry.created_at.strftime(
+                        "%d %B %Y at %H:%M"
+                    ) }}
+                {% endif %}
+            </p>
+
+        </div>
+
+        <a
+            href="{{ url_for('admin.enquiries') }}"
+            class="admin-back-btn"
+        >
+            ← All Enquiries
+        </a>
+
+    </div>
+
+
+    <div class="enquiry-detail-grid">
+
+
+        <!-- =============================================
+             CLIENT INFORMATION
+        ============================================== -->
+
+        <div class="admin-card">
+
+            <div class="admin-card-header">
+
+                <div>
+                    <h2>Client Information</h2>
+                    <p>Contact details provided by the client.</p>
+                </div>
+
+            </div>
+
+
+            <div class="detail-list">
+
+                <div class="detail-item">
+
+                    <span>Name</span>
+
+                    <strong>
+                        {{ enquiry.name }}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>Email</span>
+
+                    <a
+                        href="mailto:{{ enquiry.email }}"
+                    >
+                        {{ enquiry.email }}
+                    </a>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>Phone / WhatsApp</span>
+
+                    {% if enquiry.phone %}
+
+                        <a
+                            href="tel:{{ enquiry.phone }}"
+                        >
+                            {{ enquiry.phone }}
+                        </a>
+
+                    {% else %}
+
+                        <strong>Not provided</strong>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =============================================
+             PROJECT INFORMATION
+        ============================================== -->
+
+        <div class="admin-card">
+
+            <div class="admin-card-header">
+
+                <div>
+                    <h2>Project Information</h2>
+                    <p>Requirements submitted by the client.</p>
+                </div>
+
+            </div>
+
+
+            <div class="detail-list">
+
+                <div class="detail-item">
+
+                    <span>Service</span>
+
+                    <strong>
+                        {{ enquiry.service }}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>Estimated Budget</span>
+
+                    <strong>
+                        {{ enquiry.budget or "Not specified" }}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>Current Status</span>
+
+                    <span
+                        class="enquiry-status status-{{ enquiry.status|lower|replace(' ', '-') }}"
+                    >
+                        {{ enquiry.status }}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =============================================
+             MESSAGE
+        ============================================== -->
+
+        <div class="admin-card enquiry-message-card">
+
+            <div class="admin-card-header">
+
+                <div>
+                    <h2>Project Message</h2>
+                    <p>Full message from the client.</p>
+                </div>
+
+            </div>
+
+            <div class="enquiry-message">
+
+                {{ enquiry.message|e|replace('\n', '<br>')|safe }}
+
+            </div>
+
+        </div>
+
+
+        <!-- =============================================
+             STATUS MANAGEMENT
+        ============================================== -->
+
+        <div class="admin-card">
+
+            <div class="admin-card-header">
+
+                <div>
+                    <h2>Update Status</h2>
+                    <p>Track the progress of this enquiry.</p>
+                </div>
+
+            </div>
+
+
+            <form
+                action="{{ url_for(
+                    'admin.update_enquiry_status',
+                    enquiry_id=enquiry.id
+                ) }}"
+                method="POST"
+                class="status-form"
+            >
+
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="{{ csrf_token() }}"
+                >
+
+                <select
+                    name="status"
+                    required
+                >
+
+                    <option
+                        value="New"
+                        {% if enquiry.status == "New" %}
+                            selected
+                        {% endif %}
+                    >
+                        New
+                    </option>
+
+                    <option
+                        value="Contacted"
+                        {% if enquiry.status == "Contacted" %}
+                            selected
+                        {% endif %}
+                    >
+                        Contacted
+                    </option>
+
+                    <option
+                        value="In Progress"
+                        {% if enquiry.status == "In Progress" %}
+                            selected
+                        {% endif %}
+                    >
+                        In Progress
+                    </option>
+
+                    <option
+                        value="Completed"
+                        {% if enquiry.status == "Completed" %}
+                            selected
+                        {% endif %}
+                    >
+                        Completed
+                    </option>
+
+                </select>
+
+
+                <button
+                    type="submit"
+                    class="admin-primary-btn"
+                >
+                    Update Status
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- =============================================
+             ACTIONS
+        ============================================== -->
+
+        <div class="admin-card enquiry-actions-card">
+
+            <h2>Actions</h2>
+
+            <div class="enquiry-actions">
+
+                <a
+                    href="mailto:{{ enquiry.email }}"
+                    class="admin-primary-btn"
+                >
+                    Email Client ↗
+                </a>
+
+
+                {% if enquiry.phone %}
+
+                <a
+                    href="https://wa.me/{{ enquiry.phone|replace('+', '')|replace(' ', '') }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="admin-secondary-btn"
+                >
+                    WhatsApp ↗
+                </a>
+
+                {% endif %}
+
+
+                <form
+                    action="{{ url_for(
+                        'admin.delete_enquiry',
+                        enquiry_id=enquiry.id
+                    ) }}"
+                    method="POST"
+                    onsubmit="return confirm('Delete this enquiry permanently?');"
+                >
+
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        value="{{ csrf_token() }}"
+                    >
+
+                    <button
+                        type="submit"
+                        class="admin-danger-btn"
+                    >
+                        Delete Enquiry
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

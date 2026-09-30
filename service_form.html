@@ -1,0 +1,229 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+Fanu Designs — {{ page_title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="service-form-page">
+
+```
+<div class="service-form-header">
+
+    <div>
+
+        <span class="page-eyebrow">
+            SERVICE MANAGEMENT
+        </span>
+
+        <h1>
+            {{ page_title }}
+        </h1>
+
+        <p>
+            Create and manage a professional service offered by Fanu Designs.
+        </p>
+
+    </div>
+
+    <a
+        href="{{ url_for('admin.services') }}"
+        class="back-services-btn"
+    >
+        ← Back to Services
+    </a>
+
+</div>
+
+
+<div class="service-form-layout">
+
+    <div class="service-form-card">
+
+        <form
+            method="POST"
+            novalidate
+        >
+
+            {{ form.hidden_tag() }}
+
+
+            <div class="form-section-title">
+                <span>01</span>
+                Service Information
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="admin-form-group">
+
+                    {{ form.name.label }}
+
+                    {{ form.name(
+                        class="admin-form-control",
+                        placeholder="e.g. Graphic Design"
+                    ) }}
+
+                    {% for error in form.name.errors %}
+                        <small class="form-error">
+                            {{ error }}
+                        </small>
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="admin-form-group">
+
+                    {{ form.category.label }}
+
+                    {{ form.category(
+                        class="admin-form-control",
+                        placeholder="e.g. Graphic Design"
+                    ) }}
+
+                    {% for error in form.category.errors %}
+                        <small class="form-error">
+                            {{ error }}
+                        </small>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                {{ form.description.label }}
+
+                {{ form.description(
+                    class="admin-form-control admin-form-textarea",
+                    placeholder="Describe what this service includes..."
+                ) }}
+
+                {% for error in form.description.errors %}
+                    <small class="form-error">
+                        {{ error }}
+                    </small>
+                {% endfor %}
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="admin-form-group">
+
+                    {{ form.price.label }}
+
+                    {{ form.price(
+                        class="admin-form-control",
+                        placeholder="e.g. From KSh 800"
+                    ) }}
+
+                </div>
+
+
+                <div class="admin-form-group">
+
+                    {{ form.icon.label }}
+
+                    {{ form.icon(
+                        class="admin-form-control",
+                        placeholder="e.g. ✦"
+                    ) }}
+
+                    <small class="form-help">
+                        Enter an emoji or simple icon symbol.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="service-feature-toggle">
+
+                <div>
+
+                    <strong>
+                        Featured Service
+                    </strong>
+
+                    <p>
+                        Highlight this service on your website.
+                    </p>
+
+                </div>
+
+                <label class="switch">
+
+                    {{ form.featured() }}
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="service-form-actions">
+
+                <a
+                    href="{{ url_for('admin.services') }}"
+                    class="cancel-service-btn"
+                >
+                    Cancel
+                </a>
+
+                {{ form.submit(
+                    class="save-service-btn",
+                    value=submit_text
+                ) }}
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <!-- PREVIEW -->
+
+    <aside class="service-preview">
+
+        <span class="preview-label">
+            SERVICE PREVIEW
+        </span>
+
+        <div class="preview-icon">
+            ✦
+        </div>
+
+        <span class="preview-category">
+            YOUR CATEGORY
+        </span>
+
+        <h2>
+            Your Service
+        </h2>
+
+        <p>
+            Your service description will appear here on the public Fanu Designs website.
+        </p>
+
+        <div class="preview-price">
+            From KSh 0
+        </div>
+
+    </aside>
+
+</div>
+```
+
+</div>
+
+{% endblock %}

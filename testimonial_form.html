@@ -1,0 +1,243 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+Fanu Designs — {{ page_title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="testimonial-form-page">
+
+    <div class="testimonial-form-header">
+
+        <div>
+
+            <span class="page-eyebrow">
+                CLIENT MANAGEMENT
+            </span>
+
+            <h1>
+                {{ page_title }}
+            </h1>
+
+            <p>
+                Add professional client feedback
+                to your Fanu Designs portfolio.
+            </p>
+
+        </div>
+
+        <a
+            href="{{ url_for('admin.testimonials') }}"
+            class="admin-secondary-btn"
+        >
+            ← Back to Testimonials
+        </a>
+
+    </div>
+
+
+    <div class="testimonial-form-layout">
+
+        <!-- FORM -->
+        <div class="testimonial-form-card">
+
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                {{ form.hidden_tag() }}
+
+
+                <div class="admin-form-group">
+
+                    {{ form.client_name.label }}
+
+                    {{ form.client_name(
+                        class="admin-form-control",
+                        placeholder="e.g. Jane Wanjiku"
+                    ) }}
+
+                    {% for error in form.client_name.errors %}
+
+                    <small class="form-error">
+                        {{ error }}
+                    </small>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="admin-form-group">
+
+                        {{ form.company.label }}
+
+                        {{ form.company(
+                            class="admin-form-control",
+                            placeholder="e.g. ABC Company"
+                        ) }}
+
+                    </div>
+
+
+                    <div class="admin-form-group">
+
+                        {{ form.position.label }}
+
+                        {{ form.position(
+                            class="admin-form-control",
+                            placeholder="e.g. CEO"
+                        ) }}
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-form-group">
+
+                    {{ form.message.label }}
+
+                    {{ form.message(
+                        class="admin-form-control testimonial-textarea",
+                        rows="7",
+                        placeholder="Write the client's testimonial..."
+                    ) }}
+
+                    {% for error in form.message.errors %}
+
+                    <small class="form-error">
+                        {{ error }}
+                    </small>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="admin-form-group">
+
+                        {{ form.rating.label }}
+
+                        {{ form.rating(
+                            class="admin-form-control",
+                            min="1",
+                            max="5"
+                        ) }}
+
+                        <small class="form-help">
+                            Enter a rating from 1 to 5.
+                        </small>
+
+                    </div>
+
+
+                    <div class="admin-form-group">
+
+                        {{ form.photo.label }}
+
+                        {{ form.photo(
+                            class="admin-form-control"
+                        ) }}
+
+                        <small class="form-help">
+                            JPG, PNG, JPEG or WEBP.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="testimonial-feature-toggle">
+
+                    <label>
+
+                        {{ form.featured }}
+
+                        <span>
+                            Feature this testimonial
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="testimonial-form-actions">
+
+                    <a
+                        href="{{ url_for('admin.testimonials') }}"
+                        class="admin-cancel-btn"
+                    >
+                        Cancel
+                    </a>
+
+                    {{ form.submit(
+                        class="admin-primary-btn"
+                    ) }}
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- PREVIEW -->
+        <aside class="testimonial-preview">
+
+            <span class="page-eyebrow">
+                LIVE PREVIEW
+            </span>
+
+            <h2>
+                Client Testimonial
+            </h2>
+
+            <div class="preview-stars">
+                ★★★★★
+            </div>
+
+            <div class="preview-quote">
+                “
+            </div>
+
+            <p>
+                Great work, professional service and
+                excellent attention to detail.
+            </p>
+
+            <div class="preview-client">
+
+                <div class="testimonial-avatar">
+                    F
+                </div>
+
+                <div>
+
+                    <strong>
+                        Client Name
+                    </strong>
+
+                    <span>
+                        Company
+                    </span>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</div>
+
+{% endblock %}
